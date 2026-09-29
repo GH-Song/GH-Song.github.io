@@ -21,6 +21,19 @@
     "scope": "international"
   },
   {
+    "date": "2024",
+    "title": "Metasurface wavefront sensor for semiconductor metrology",
+    "authors": ["G. Song"],
+    "venue": {
+      "en": "Next-Generation Lithography & Patterning Conference (NGL)",
+      "ko": "차세대 리소그래피·패터닝 학술대회 (NGL)"
+    },
+    "place": "Korea",
+    "kind": {"en": "Poster", "ko": "포스터"},
+    "award": {"en": "Best Student Paper Award, 1st Place", "ko": "최우수 학생 논문상 (1위)"},
+    "scope": "domestic"
+  },
+  {
     "date": "2023-11",
     "title": "Double-layered disordered metasurface spectrometer",
     "authors": ["G. Song", "D. Lee", "C. Lee", "C. Lee", "M. Jang"],
