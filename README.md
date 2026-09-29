@@ -24,16 +24,15 @@ git add -A && git commit -m "update" && git push   # 1–2분 뒤 사이트 반�
 | 논문 썸네일 | `static/img/pub/<key>.webp` | 파일이 있으면 자동 표시, 없으면 저널명 자리표시 |
 | 기사 추가 | `content/press.json` → `articles` | `story`는 `stories`의 키. 헤드라인은 원문 그대로 |
 | 기사 묶음(성과) 추가 | `content/press.json` → `stories` | `label`(막대그래프 이름), `paper`(논문 key)를 적으면 논문 목록의 "Press (n)"이 자동 연결 |
-| 수상 · 특허 | `content/honors.json` | 특허는 `filings`에 국가별 등록/출원을 따로 |
+| 수상 · 특허 | `content/honors.json` | 특허는 `filings`에 국가별 등록/출원을 따로, 대표 도면은 `image` |
 | 학회 발표 | `content/talks.json` | `scope`: international / domestic |
-| 소식 | `content/news.json` | 최신 6개만 홈에 표시 |
 | 피인용 수 | `content/site.json` → `scholar` | `as_of`, `per_year`도 함께 (그래프에 사용) |
-| 학력 · 과제 · 연구비 · 기술 | `content/cv.json` | 타임라인 그래프는 연도에서 자동 |
+| 학력 · 참여 연구과제 · 연구비 · 기술 | `content/cv.json` | 참여 연구과제는 지도교수 과제임을 섹션 안내문에 명시 |
 | 연구 소개 페이지 | `content/research.json` | 공동 제1저자 논문 요약·주요 결과·그림 |
 | 마지막 수정일 | `content/site.json` → `updated` | |
 
 모든 문구는 `"문자열"` 또는 `{"en": "...", "ko": "..."}`. `**굵게**`, `*기울임*`, `[링크](https://…)`를 쓸 수 있다.
-요약 숫자(논문 수, 제1저자 수, 특허, 발표, 보도 수 등)와 그래프는 JSON에서 **자동 계산**된다.
+요약 표(논문 수, 제1저자 논문 수, 특허, 수상, 발표)와 그래프는 JSON에서 **자동 계산**된다.
 
 JSON 정렬이 흐트러지면 `python3 tools/fmt_json.py`. 빌드할 때 없는 논문 키·스토리 키·중복 URL을 검사해 알려준다.
 
@@ -41,7 +40,7 @@ JSON 정렬이 흐트러지면 `python3 tools/fmt_json.py`. 빌드할 때 없는
 
 | 파일 | 만드는 법 |
 |---|---|
-| `static/img/portrait.*`, `pub/*.webp`, 연구 그림 | `python3 tools/prep_images.py` — 원본(논문 PDF, 연구실 홈페이지 썸네일, 사진) 경로는 스크립트 상단에서 지정. 원본은 저장소에 넣지 않는다 |
+| `static/img/portrait.*`, `pub/*.webp`, `patent/*.webp`, 연구 그림 | `python3 tools/prep_images.py` — 원본(논문 PDF, 연구실 썸네일, 특허 도면, 사진)은 `~/Projects/mypr/sources/` 등 저장소 밖에 둔다. 사진은 머리 위 조명을 지운 뒤 얼굴 중심으로 자른다 |
 | `static/img/og.jpg` (링크 미리보기 카드) | `python3 tools/make_og.py` — 숫자가 바뀌면 다시 실행 |
 | `static/files/Gookho_Song_CV.pdf` | `python3 build.py --pdf` (전화번호는 넣지 않았다) |
 

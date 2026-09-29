@@ -171,19 +171,16 @@ UI = {
         "interests": "Research interests", "overview": "Overview", "news": "News",
         "publications": "Publications", "awards": "Honors & awards", "patents": "Patents",
         "presentations": "Conference presentations", "press": "Press coverage",
-        "projects": "Research projects", "grants": "Grants", "education": "Education", "skills": "Skills",
+        "projects": "Participation in sponsored research", "grants": "Grants", "education": "Education", "skills": "Skills",
+        "projects_note": "Projects of Prof. Mooseok Jang (PI), in which I participated as a researcher.",
+        "metrics": [("Journal articles", "articles"), ("First-author articles", "first"), ("Citations", "cites"),
+                    ("h-index", "h"), ("i10-index", "i10"), ("Patents granted", "patents"), ("Awards", "awards"),
+                    ("Conference presentations", "talks")],
+        "metrics_note": "Citation metrics from Google Scholar, {d}.",
         "advisor": "Advisor: Prof. Mooseok Jang",
-        "st_articles": "Journal articles", "st_articles_n": "{n} as first author (equal contribution)",
-        "st_cites": "Citations", "st_cites_n": "Google Scholar, {d}",
-        "st_h": "h-index", "st_h_n": "i10-index {n}",
-        "st_patents": "Patents granted", "st_patents_n": "{offices} · {p} pending",
-        "st_awards": "Awards", "st_talks": "Presentations", "st_talks_n": "{i} international · {d} domestic",
-        "st_press": "Press articles", "st_press_n": "{f} on first-author papers · {m} outlets",
         "groups": {"first": "First-author papers", "other": "Awards and other", "coauthor": "Co-authored papers"},
-        "st_projects": "Funded projects", "st_projects_n": "industry {i} · government {g}",
-        "ch_cites": "Citations per year", "ch_cites_note": "Google Scholar, as of {d} ({y} is partial)",
+        "ch_cites": "Citations per year",
         "ch_pubs": "Journal articles per year", "ch_first": "First author", "ch_other": "Co-author",
-        "ch_timeline": "Education and research projects", "edu_row": "Education",
         "filter_all": "All", "filter_first": "First author",
         "preprints": "Preprints",
         "legend": "<strong>G. Song</strong> · † equal contribution (co-first) · * corresponding author",
@@ -208,19 +205,16 @@ UI = {
         "interests": "연구 분야", "overview": "요약", "news": "소식",
         "publications": "논문", "awards": "수상", "patents": "특허",
         "presentations": "학회 발표", "press": "언론 보도",
-        "projects": "연구 과제", "grants": "연구비", "education": "학력", "skills": "기술",
+        "projects": "참여 연구과제", "grants": "연구비 수혜", "education": "학력", "skills": "기술",
+        "projects_note": "지도교수 장무석 교수(연구책임자)의 과제에 참여연구원으로 참여했습니다.",
+        "metrics": [("국제 학술지 논문", "articles"), ("제1저자 논문", "first"), ("피인용", "cites"),
+                    ("h-index", "h"), ("i10-index", "i10"), ("등록 특허", "patents"), ("수상", "awards"),
+                    ("학회 발표", "talks")],
+        "metrics_note": "인용 지표: Google Scholar, {d} 기준.",
         "advisor": "지도교수: 장무석",
-        "st_articles": "국제 학술지 논문", "st_articles_n": "제1저자 {n}편 (공동)",
-        "st_cites": "피인용", "st_cites_n": "Google Scholar, {d} 기준",
-        "st_h": "h-index", "st_h_n": "i10-index {n}",
-        "st_patents": "등록 특허", "st_patents_n": "{offices} · 출원 {p}건",
-        "st_awards": "수상", "st_talks": "학회 발표", "st_talks_n": "국제 {i} · 국내 {d}",
-        "st_press": "언론 보도", "st_press_n": "제1저자 논문 {f}건 · {m}개 매체",
         "groups": {"first": "제1저자 논문", "other": "수상·기타", "coauthor": "공저 논문"},
-        "st_projects": "연구 과제", "st_projects_n": "산학 {i} · 국책 {g}",
-        "ch_cites": "연도별 피인용", "ch_cites_note": "Google Scholar, {d} 기준 ({y}년은 집계 중)",
+        "ch_cites": "연도별 피인용",
         "ch_pubs": "연도별 학술지 논문", "ch_first": "제1저자", "ch_other": "공저자",
-        "ch_timeline": "학력과 연구 과제", "edu_row": "학력",
         "filter_all": "전체", "filter_first": "제1저자",
         "preprints": "프리프린트",
         "legend": "<strong>G. Song</strong> · † 공동 제1저자 (equal contribution) · * 교신저자",
@@ -405,12 +399,12 @@ def bibtex(p):
 
 # ───────────────────────────────────────────────────────────── charts ──
 
-def svg_bars(series, classes, labels, note=""):
+def svg_bars(series, classes, labels, note="", height=150, width=360):
     """Vertical, optionally stacked bar chart. series: {x_label: [v1, v2, …]}."""
-    W, H, top, bottom = 360, 150, 20, 22
+    W, H, top, bottom = width, height, 20, 22
     vmax = max(sum(v) for v in series.values()) or 1
     slot = W / len(series)
-    bw = min(30, slot * 0.5)
+    bw = min(26, slot * 0.52)
     parts = [f'<line x1="0" y1="{H - bottom}" x2="{W}" y2="{H - bottom}" class="axis"/>']
     for i, (x, vals) in enumerate(series.items()):
         cx, y = slot * (i + 0.5), H - bottom
@@ -428,29 +422,6 @@ def svg_bars(series, classes, labels, note=""):
     cap = f'<p class="chart-note">{esc(note)}</p>' if note else ""
     return (f'<svg viewBox="0 0 {W} {H}" class="bars" role="img" aria-label="{esc(" / ".join(labels))}">'
             f'{"".join(parts)}</svg>{legend}{cap}')
-
-
-def timeline_chart(lang):
-    """Horizontal timeline: education on the first row, one row per research project."""
-    today = parse_date(SITE["updated"])
-    now = today.year + today.month / 12
-    rows = [(UI[lang]["edu_row"], [(e["from"], e.get("to") or now, T(e["short"], lang)) for e in CV["education"]])]
-    for e in sorted(CV["experience"], key=lambda e: e["start"]):
-        end = now if e["end"] >= today.year else e["end"] + 1
-        rows.append((T(e.get("org_short") or e["org"], lang), [(e["start"], end, "")]))
-    y0 = int(min(a for _, segs in rows for a, _, _ in segs))
-    y1 = today.year + 1
-    span = y1 - y0
-    pos = lambda v: (v - y0) / span * 100
-    ticks = "".join(f'<span style="left:{pos(y):.2f}%">{y}</span>' for y in range(y0, y1 + 1, 2))
-    out = []
-    for label, segs in rows:
-        bars = "".join(
-            f'<span class="tl-bar{" tl-open" if b >= now else ""}" style="left:{pos(a):.2f}%;width:{pos(b) - pos(a):.2f}%">'
-            f'<em>{esc(t)}</em></span>' for a, b, t in segs)
-        out.append(f'<div class="tl-row"><span class="tl-label">{esc(label)}</span><div class="tl-track">{bars}</div></div>')
-    return (f'<div class="timeline">{"".join(out)}'
-            f'<div class="tl-row tl-axis"><span class="tl-label"></span><div class="tl-track">{ticks}</div></div></div>')
 
 
 # ──────────────────────────────────────────────────────────── sections ──
@@ -474,8 +445,8 @@ def sec_profile(lang):
 
 
 def sec_interests(lang):
-    items = "".join(f"<li>{esc(T(x, lang))}</li>" for x in SITE["interests"])
-    return section("interests", UI[lang]["interests"], f'<ul class="chips">{items}</ul>')
+    line = " · ".join(esc(T(x, lang)) for x in SITE["interests"])
+    return section("interests", UI[lang]["interests"], f'<p class="interests">{line}</p>')
 
 
 def sec_overview(lang):
@@ -483,44 +454,22 @@ def sec_overview(lang):
     journals = journal_papers()
     first = [p for p in journals if "first" in p.get("tags", [])]
     sch = SITE["scholar"]
-    granted, pending = filings("granted"), filings("pending")
-    offices = {}
-    for f in granted:
-        offices[f["office"]] = offices.get(f["office"], 0) + 1
-    off = " · ".join(f"{o} {n}" for o, n in sorted(offices.items(), key=lambda kv: kv[0] != "US"))
-    n_press, n_out = press_counts()
-    intl = sum(1 for t in TALKS if t.get("scope") == "international")
-    kinds = [e.get("kind") for e in CV["experience"]]
-    stats = [
-        (u["st_articles"], len(journals), u["st_articles_n"].format(n=len(first))),
-        (u["st_cites"], f"{sch['citations']:,}", u["st_cites_n"].format(d=fmt_date(sch["as_of"], lang))),
-        (u["st_h"], sch["h_index"], u["st_h_n"].format(n=sch["i10_index"])),
-        (u["st_patents"], len(granted), u["st_patents_n"].format(offices=off, p=len(pending))),
-        (u["st_awards"], len(HONORS["awards"]), T(HONORS["awards"][0]["short"], lang)),
-        (u["st_talks"], len(TALKS), u["st_talks_n"].format(i=intl, d=len(TALKS) - intl)),
-        (u["st_press"], n_press, u["st_press_n"].format(
-            m=n_out, f=sum(len(v) for k, v in STORY_ARTICLES.items() if PRESS["stories"][k].get("group") == "first"))),
-        (u["st_projects"], len(CV["experience"]), u["st_projects_n"].format(i=kinds.count("industry"), g=kinds.count("government"))),
-    ]
-    cells = "".join(f'<div><dt>{esc(l)}</dt><dd>{esc(str(v))}</dd><dd class="n">{esc(n)}</dd></div>' for l, v, n in stats)
+    values = {"articles": len(journals), "first": len(first), "cites": f"{sch['citations']:,}", "h": sch["h_index"],
+              "i10": sch["i10_index"], "patents": len(filings("granted")), "awards": len(HONORS["awards"]),
+              "talks": len(TALKS)}
+    rows = "".join(f'<tr><th scope="row">{esc(label)}</th><td>{values[k]}</td></tr>' for label, k in u["metrics"])
     ys = [p["year"] for p in journals]
     per_year = {y: [sum(1 for p in first if p["year"] == y), sum(1 for p in journals if p["year"] == y and p not in first)]
                 for y in range(min(ys), max(ys) + 1)}
     cites = {int(y): [v] for y, v in sorted(sch["per_year"].items())}
-    note = u["ch_cites_note"].format(y=parse_date(sch["as_of"]).year, d=fmt_date(sch["as_of"], lang))
-    charts = f"""<div class="charts">
-  <figure class="chart"><figcaption>{esc(u['ch_cites'])}</figcaption>{svg_bars(cites, ['c1'], [u['ch_cites']], note=note)}</figure>
-  <figure class="chart"><figcaption>{esc(u['ch_pubs'])}</figcaption>{svg_bars(per_year, ['c1', 'c2'], [u['ch_first'], u['ch_other']])}</figure>
-  <figure class="chart chart-wide"><figcaption>{esc(u['ch_timeline'])}</figcaption>{timeline_chart(lang)}</figure>
-</div>"""
-    return section("overview", u["overview"], f'<dl class="stats">{cells}</dl>{charts}')
-
-
-def sec_news(lang, limit=6):
-    items = sorted(NEWS, key=lambda n: n["date"], reverse=True)[:limit]
-    rows = "".join(f'<li><time datetime="{n["date"]}">{esc(fmt_date(n["date"], lang))}</time><p>{md(T(n["text"], lang))}</p></li>'
-                   for n in items)
-    return section("news", UI[lang]["news"], f'<ul class="rows">{rows}</ul>')
+    note = u["metrics_note"].format(d=fmt_date(sch["as_of"], lang))
+    body = f"""<div class="ov">
+  <table class="metrics"><tbody>{rows}</tbody></table>
+  <figure class="mini"><figcaption>{esc(u['ch_cites'])}</figcaption>{svg_bars(cites, ['c1'], [u['ch_cites']], height=190, width=240)}</figure>
+  <figure class="mini"><figcaption>{esc(u['ch_pubs'])}</figcaption>{svg_bars(per_year, ['c1', 'c2'], [u['ch_first'], u['ch_other']], height=190, width=240)}</figure>
+</div>
+<p class="note ov-note">{esc(note)}</p>"""
+    return section("overview", u["overview"], body)
 
 
 def pub_entry(p, lang):
@@ -595,8 +544,10 @@ def sec_patents(lang):
             f'<li><span class="pat-no">{link(f["url"], f["number"]) if f.get("url") else esc(f["number"])}</span>'
             f'<span class="pat-st pat-{f["status"]}">{esc(u[f["status"]])} · {esc(fmt_date(f["date"], lang, day=True))}</span></li>'
             for f in p["filings"])
-        rows += (f'<li><p class="r-title">{md(T(p["title"], lang))}</p><ul class="filings">{fl}</ul>'
-                 f'<p class="r-note">{esc(u["inventors"])}: {authors_html(p["inventors"])} · {esc(p.get("assignee", ""))}</p></li>')
+        thumb = (f'<div class="thumb thumb-pat">{img(p["image"], "")}</div>' if p.get("image")
+                 else f'<div class="thumb thumb-pat thumb-empty" aria-hidden="true">{esc(p["filings"][0]["office"])}</div>')
+        rows += (f'<li class="patent">{thumb}<div><p class="r-title">{md(T(p["title"], lang))}</p><ul class="filings">{fl}</ul>'
+                 f'<p class="r-note">{esc(u["inventors"])}: {authors_html(p["inventors"])} · {esc(p.get("assignee", ""))}</p></div></li>')
     inv = HONORS["inventions"]
     items = "".join(f"<li>{md(T(x, lang))}</li>" for x in inv["items"])
     extra = (f'<li><p class="r-title">{esc(u["invention_title"])}</p><p class="r-meta">{md(T(inv["body"], lang))}</p>'
@@ -671,7 +622,7 @@ def sec_projects(lang):
     grants = "".join(f'<li><time>{g["year"]}</time><div><p class="r-title">{md(T(g["title"], lang))}</p>'
                      f'<p class="r-meta">{esc(T(g["org"], lang))}</p><p class="r-note">{md(T(g["body"], lang))}</p></div></li>'
                      for g in CV["grants"])
-    return (section("projects", u["projects"], f'<ul class="rows">{rows}</ul>')
+    return (section("projects", u["projects"], f'<p class="note sec-note">{esc(u["projects_note"])}</p><ul class="rows">{rows}</ul>')
             + section("grants", u["grants"], f'<ul class="rows">{grants}</ul>'))
 
 
@@ -696,7 +647,7 @@ def sec_skills(lang):
 
 def build_home(lang):
     body = "\n".join([
-        sec_profile(lang), sec_interests(lang), sec_overview(lang), sec_news(lang),
+        sec_profile(lang), sec_interests(lang), sec_overview(lang),
         sec_publications(lang), sec_awards(lang), sec_patents(lang), sec_presentations(lang),
         sec_press(lang), sec_projects(lang), sec_education(lang), sec_skills(lang),
     ])
@@ -819,7 +770,7 @@ def build_cv():
 <h2>Patents &amp; Inventions</h2><ul>{pats}</ul>
 <p><em>{md(T(inv['title'], L))}</em> — {md(T(inv['body'], L))} {'; '.join(md(T(x, L)) for x in inv['items'])}.</p>
 <h2>Grants &amp; Funded Projects</h2>{grants}
-<h2>Research Experience</h2>{exp}
+<h2>Research Experience</h2><div class="legend">Sponsored projects of Prof. Mooseok Jang (PI); participating researcher.</div>{exp}
 <h2>Technical Skills</h2><div class="skills">{skills}</div>
 <p class="updated">Last updated {esc(fmt_date(s['updated'], L, day=True))}</p>
 </article></body></html>"""
@@ -833,14 +784,13 @@ def build_404():
 # ───────────────────────────────────────────────────────────── loading ──
 
 def load_all():
-    global SITE, RESEARCH, PUBS, PUB_BY_KEY, TALKS, HONORS, CV, NEWS, PRESS, STORY_ARTICLES, STORY_ORDER, FEATURED
+    global SITE, RESEARCH, PUBS, PUB_BY_KEY, TALKS, HONORS, CV, PRESS, STORY_ARTICLES, STORY_ORDER, FEATURED
     SITE = load("site")
     RESEARCH = load("research")
     PUBS = load("publications")["papers"]
     TALKS = load("talks")
     HONORS = load("honors")
     CV = load("cv")
-    NEWS = load("news")
     PRESS = load("press")
     PUB_BY_KEY = {p["key"]: p for p in PUBS}
     FEATURED = {f["paper"] for f in RESEARCH["featured"]}

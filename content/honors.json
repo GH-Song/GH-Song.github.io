@@ -48,7 +48,8 @@
           "url": "https://patents.google.com/patent/US12571712B2/en"
         },
         {"office": "KR", "number": "KR 10-3018644", "status": "granted", "date": "2026-09-08"}
-      ]
+      ],
+      "image": "/static/img/patent/us12571712.webp"
     },
     {
       "title": {"en": "Hyperspectral image sensor and system employing the same", "ko": "초분광 이미지 센서 및 이를 포함하는 시스템"},
@@ -63,7 +64,8 @@
           "date": "2024-08-22",
           "url": "https://patents.google.com/patent/US20240280406A1/en"
         }
-      ]
+      ],
+      "image": "/static/img/patent/us20240280406.webp"
     },
     {
       "title": {"en": "Compact microscope based on a random-encoding metasurface", "ko": "무작위 부호화 메타표면 기반 소형 현미경"},

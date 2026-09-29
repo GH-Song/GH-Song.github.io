@@ -131,6 +131,15 @@
   ],
   "grants": [
     {
+      "year": 2026,
+      "org": {"en": "KAIST Startup Support Center", "ko": "KAIST 창업지원센터"},
+      "title": {"en": "Lab Startup KAIST 2026 · selected, ₩35M", "ko": "2026 Lab Startup KAIST 프로그램 · 최종 선발, 3,500만 원"},
+      "body": {
+        "en": "KAIST internal R&D program for pre-startup teams, Jul–Nov 2026.",
+        "ko": "KAIST 예비창업팀 대상 자체연구사업, 2026.07–2026.11."
+      }
+    },
+    {
       "year": 2021,
       "org": {"en": "KAIST College of Engineering", "ko": "KAIST 공과대학"},
       "title": {
@@ -202,33 +211,46 @@
     },
     {
       "icon": "code",
-      "title": {"en": "Code & simulation", "ko": "코드·시뮬레이션"},
+      "title": {"en": "Software", "ko": "소프트웨어"},
       "groups": [
         {
-          "k": {"en": "Languages", "ko": "언어"},
+          "k": {"en": "Programming", "ko": "프로그래밍"},
           "v": ["Python (PyTorch, TensorFlow)", "MATLAB", "C/C++"]
         },
         {
           "k": {"en": "Simulation", "ko": "시뮬레이션"},
-          "v": ["FDTD", "RCWA", "Large-scale wave propagation"]
+          "v": ["FDTD", "RCWA", {"en": "Large-scale wave propagation", "ko": "대면적 파동 전파"}]
+        },
+        {
+          "k": {"en": "AI-native development", "ko": "AI 네이티브 개발"},
+          "v": [
+            {"en": "Simulators", "ko": "시뮬레이터"},
+            {"en": "GUI software for driving lab hardware", "ko": "실험 하드웨어 구동 GUI 소프트웨어"},
+            {"en": "Web services", "ko": "웹 서비스"}
+          ]
         }
       ]
     },
     {
       "icon": "cube",
-      "title": {"en": "Prototyping", "ko": "프로토타이핑"},
+      "title": {"en": "Hardware prototyping", "ko": "하드웨어 프로토타이핑"},
       "groups": [
         {
-          "k": {"en": "Modelling", "ko": "모델링"},
-          "v": ["Fusion 360"]
+          "k": {"en": "Electronics", "ko": "전자"},
+          "v": [{"en": "PCB design", "ko": "PCB 설계"}]
         },
         {
-          "k": {"en": "Visualisation", "ko": "시각화"},
-          "v": ["Blender", "Maya", "Illustrator"]
+          "k": {"en": "3D modeling & graphics", "ko": "3D 모델링·그래픽"},
+          "v": ["Fusion 360", "Blender", "Maya", "Illustrator"]
         },
         {
           "k": {"en": "Fabrication", "ko": "제작"},
-          "v": ["FDM 3D printing", "SLA/DLP 3D printing", "Laser cutting"]
+          "v": [
+            {"en": "FDM 3D printing", "ko": "FDM 3D 프린팅"},
+            {"en": "SLA/DLP 3D printing", "ko": "SLA/DLP 3D 프린팅"},
+            {"en": "Laser cutting", "ko": "레이저 커팅"},
+            {"en": "Prototype building", "ko": "시제품 제작"}
+          ]
         }
       ]
     }

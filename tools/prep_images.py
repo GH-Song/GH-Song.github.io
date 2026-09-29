@@ -11,12 +11,15 @@ redistributed; the lab thumbnails are large originals). Edit the paths below.
 Requires: pymupdf, pillow.
 
 Processing is limited to crop, trimming white margins, erasing a panel letter
-and resizing.
+and resizing — except the portrait, where the chandelier above the head is
+painted out (requested by Gookho) before the face crop.
+Requires numpy as well.
 """
 import pathlib
 
 import fitz
-from PIL import Image, ImageChops, ImageDraw, ImageOps
+import numpy as np
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageOps
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "static" / "img"
@@ -27,7 +30,9 @@ HOME = pathlib.Path.home()
 SRC_PAPERS = HOME / "Projects" / "mypr" / "published"
 SRC_LAB = HOME / "Projects" / "mypr" / "sources" / "lab-thumbs"      # from mooolab.kaist.ac.kr/Publication.html
 SRC_PR = HOME / "Projects" / "optica-cardnews" / "260806_KAIST, 산란층에 가려진 투명 물체, 사진 한 장으로 복원한다 rev.3.pdf"
-SRC_PHOTO = HOME / "Downloads" / "바이오및뇌공학과_송국호_개인사진.jpg"
+SRC_PHOTO = HOME / "Projects" / "mypr" / "IMGL0353.jpg"
+SRC_APR = HOME / "Projects" / "mypr" / "sources" / "papers" / "apr2025_fig1.jpg"   # Fig. 1, CC BY 4.0
+SRC_PAT = HOME / "Projects" / "mypr" / "sources" / "patents"                     # Google Patents front-page drawings
 
 
 def pdf_image(pdf, page, xref):
@@ -81,12 +86,66 @@ def save(im, path, q=84):
     print(f"  {path.relative_to(ROOT)}  {im.size[0]}x{im.size[1]}  {path.stat().st_size // 1024} KB")
 
 
+def remove_lamps(a, origin):
+    """Paint out the two pendant lamps that hang into the top of the face crop.
+
+    The glass (and its glow) is masked by shape and brightness; hair is never
+    masked. The hole is filled from the surrounding wall/ceiling with a
+    pull-push pyramid, smoothed, and given grain matched to the ceiling.
+    """
+    H, W = a.shape[:2]
+    lum = a[..., 0] * 0.299 + a[..., 1] * 0.587 + a[..., 2] * 0.114
+    yy, xx = np.mgrid[0:H, 0:W]
+    X, Y = xx + origin[0], yy + origin[1]
+
+    def footprint(x0, x1, y1, r):                         # box with rounded bottom corners
+        inside = (X >= x0) & (X <= x1) & (Y <= y1)
+        for cx in (x0 + r, x1 - r):
+            side = (X < cx) if cx == x0 + r else (X > cx)
+            corner = side & (Y > y1 - r)
+            inside &= ~(corner & ((X - cx) ** 2 + (Y - (y1 - r)) ** 2 > r * r))
+        return inside
+
+    def dilate(m, px):
+        return np.asarray(Image.fromarray((m * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(2 * px + 1))) > 0
+
+    left = dilate(footprint(1095, 1552, 936, 60) & (lum > 110), 3) & (lum > 110) & (Y < 944)
+    core = footprint(1698, 2190, 900, 55) & (lum > 55)
+    right = core | (dilate(core, 36) & (Y < 922) & (lum > 39))
+    mask = left | right
+    warm = (a[..., 0] - a[..., 2]) > 8                    # brown hair, as opposed to the neutral ceiling
+    valid = ~mask & ~((lum < 110) & (X < 1570) & (Y < 1010)) & ~((lum < 110) & warm & (Y < 1010))
+
+    levels = [(a * valid[..., None], valid.astype(np.float32))]
+    while min(levels[-1][1].shape) > 4:
+        I, w = levels[-1]
+        h, v = (I.shape[0] + 1) // 2 * 2, (I.shape[1] + 1) // 2 * 2
+        Ip = np.zeros((h, v, 3), np.float32); Ip[:I.shape[0], :I.shape[1]] = I
+        wp = np.zeros((h, v), np.float32); wp[:w.shape[0], :w.shape[1]] = w
+        levels.append((Ip.reshape(h // 2, 2, v // 2, 2, 3).sum((1, 3)), wp.reshape(h // 2, 2, v // 2, 2).sum((1, 3))))
+    I, w = levels[-1]
+    f = I / np.maximum(w, 1e-6)[..., None]
+    for I, w in reversed(levels[:-1]):
+        up = np.repeat(np.repeat(f, 2, 0), 2, 1)[:I.shape[0], :I.shape[1]]
+        wt = np.clip(w, 0, 1)[..., None]
+        f = wt * (I / np.maximum(w, 1e-6)[..., None]) + (1 - wt) * up
+    for _ in range(300):
+        avg = (np.roll(f, 1, 0) + np.roll(f, -1, 0) + np.roll(f, 1, 1) + np.roll(f, -1, 1)) / 4
+        f = np.where(valid[..., None], a, avg)
+    ref = lum[20:60, W - 120:W - 20]
+    grain = float((ref - np.asarray(Image.fromarray(ref.astype(np.uint8)).filter(ImageFilter.GaussianBlur(2)), np.float32)).std())
+    f = f + np.random.default_rng(3).normal(0, grain, (H, W, 1)).astype(np.float32)
+    alpha = np.asarray(Image.fromarray((mask * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(2)), np.float32)[..., None] / 255
+    return np.clip(a * (1 - alpha) + f * alpha, 0, 255).astype(np.uint8)
+
+
 # ── portrait (shown small) ─────────────────────────────────────────────────
 print("portrait")
-p = ImageOps.exif_transpose(Image.open(SRC_PHOTO)).convert("RGB")
-p = p.crop((342, 260, 1842, 2135)).resize((400, 500), Image.LANCZOS)      # 4:5 head and shoulders
-save(p, OUT / "portrait.webp", q=86)
-p.save(OUT / "portrait.jpg", quality=88, optimize=True, progressive=True)
+CROP = (1215, 848, 2335, 2248)                            # 1120 x 1400 (4:5), face-centred
+p = ImageOps.exif_transpose(Image.open(SRC_PHOTO)).convert("RGB").crop(CROP)
+p = Image.fromarray(remove_lamps(np.asarray(p, dtype=np.float32), CROP[:2])).resize((400, 500), Image.LANCZOS)
+save(p, OUT / "portrait.webp", q=88)
+p.save(OUT / "portrait.jpg", quality=90, optimize=True, progressive=True)
 
 # ── publication thumbnails ────────────────────────────────────────────────
 print("publication thumbnails")
@@ -104,6 +163,15 @@ save(fit(pr_fig1, TW, TH), PUB / "optica2026.webp")
 sa_fig5 = pdf_image(SRC_PAPERS / "ScienceAdvances_ReconSpec.pdf", 7, 719)
 library = blank(blank(sa_fig5.crop((0, 0, 776, 776)), (0, 0, 40, 44)), (0, 400, 44, 450))
 save(fit(trim(library), TW, TH), PUB / "pj2026.webp")
+save(fit(trim(Image.open(SRC_APR)), TW, TH), PUB / "apr2025.webp")
+
+# ── patent drawings (front page of the US publications) ──────────────────
+print("patent drawings")
+PAT = OUT / "patent"
+PAT.mkdir(exist_ok=True)
+for key, name in (("us12571712", "US20240377304A1_D00000.png"),        # pre-grant publication of US 12,571,712 B2
+                  ("us20240280406", "US20240280406A1_D00000.png")):
+    save(fit(trim(Image.open(SRC_PAT / name), pad=12), 360, 360), PAT / f"{key}.webp")
 
 # ── research-page figures (original colours, white background) ───────────
 print("research figures")
