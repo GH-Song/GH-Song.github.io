@@ -1,0 +1,236 @@
+{
+  "interests": {
+    "en": "**Core fields:** metasurfaces · wavefront shaping · computational optics · physics-guided deep learning · holographic imaging · Fourier ptychography · computational spectroscopy & hyperspectral imaging.\nI build optical encoders (disordered and inverse-designed metasurfaces, scattering media) paired with physics-informed reconstruction to enable compact, snapshot multimodal imaging (spectrum, phase and depth) that conventional optics cannot achieve.",
+    "ko": "메타표면 · 파면 제어 · 계산 광학 · 물리 기반 딥러닝 · 홀로그래피 · 푸리에 타이코그래피 · 계산 분광·초분광 영상"
+  },
+  "education": [
+    {
+      "years": {"en": "2022–present", "ko": "2022–현재"},
+      "school": {"en": "Korea Advanced Institute of Science and Technology (KAIST)", "ko": "KAIST (한국과학기술원)"},
+      "degree": {"en": "Ph.D. Candidate, Bio and Brain Engineering", "ko": "바이오및뇌공학과 박사과정"},
+      "place": "Daejeon, Korea",
+      "note": {
+        "en": "Advisor: Prof. Mooseok Jang · metasurfaces, multimodal (hyperspectral, phase, depth) imaging, random and computational encoding",
+        "ko": "지도교수 장무석 · 메타표면, 초분광·위상·깊이 다중 모드 영상, 무작위·계산 부호화"
+      },
+      "cv_points": [
+        "**Advisor:** Prof. Mooseok Jang",
+        "**Focus:** metasurfaces; multimodal (hyperspectral, phase, depth) imaging; random/computational encoding"
+      ],
+      "from": 2022,
+      "short": {"en": "Ph.D., KAIST", "ko": "박사, KAIST"}
+    },
+    {
+      "years": {"en": "2020–2022", "ko": "2020–2022"},
+      "school": {"en": "Korea Advanced Institute of Science and Technology (KAIST)", "ko": "KAIST (한국과학기술원)"},
+      "degree": {"en": "M.S., Bio and Brain Engineering · GPA 4.04 / 4.3", "ko": "바이오및뇌공학과 석사 · 평점 4.04 / 4.3"},
+      "place": "Daejeon, Korea",
+      "note": {
+        "en": "Advisor: Prof. Mooseok Jang · thesis: *Differential detection of ultrasound-modulated light for deep tissue imaging*",
+        "ko": "지도교수 장무석 · 학위논문: *고심도 생체 이미징을 위한 초음파 변조광 차동 측정 기법 개발*"
+      },
+      "cv_points": [
+        "**Advisor:** Prof. Mooseok Jang",
+        "**Thesis:** *Differential detection of ultrasound-modulated light for deep tissue imaging*"
+      ],
+      "from": 2020,
+      "short": {"en": "M.S., KAIST", "ko": "석사, KAIST"},
+      "to": 2022
+    },
+    {
+      "years": {"en": "2016–2020", "ko": "2016–2020"},
+      "school": {"en": "Inha University", "ko": "인하대학교"},
+      "degree": {
+        "en": "B.S., Electronic Engineering, double major in Biotechnology · GPA 4.11 / 4.5",
+        "ko": "전자공학과 학사, 생명공학 복수전공 · 평점 4.11 / 4.5"
+      },
+      "place": "Incheon, Korea",
+      "from": 2016,
+      "short": {"en": "B.S., Inha Univ.", "ko": "학사, 인하대"},
+      "to": 2020
+    }
+  ],
+  "experience": [
+    {
+      "start": 2020,
+      "end": 2025,
+      "org": {"en": "Samsung Future Technology Center", "ko": "삼성미래기술육성센터"},
+      "title": {
+        "en": "Snapshot hyperspectral sensing with 2.5D disordered metastructures",
+        "ko": "2.5차원 무질서 메타구조 기반 스냅샷 초분광 센싱"
+      },
+      "points": [
+        {
+          "en": "Designed a predictive sensor-response model for stacked disordered metasurfaces.",
+          "ko": "적층 무질서 메타표면의 센서 응답을 예측하는 모델을 설계했다."
+        },
+        {
+          "en": "Built an ultrafast wavelength–space scanner with a supercontinuum laser for real-time hypercube acquisition.",
+          "ko": "초연속 레이저로 실시간 하이퍼큐브를 얻는 초고속 파장–공간 스캐너를 만들었다."
+        },
+        {
+          "en": "Demonstrated snapshot hypercube measurement through scattering media; two patent families, now granted in the US and Korea.",
+          "ko": "산란 매질을 이용한 스냅샷 하이퍼큐브 측정을 시연했고, 특허 두 건을 출원해 미국과 한국에서 등록됐다."
+        }
+      ],
+      "kind": "industry",
+      "org_short": {"en": "Samsung Future Tech. Center", "ko": "삼성미래기술육성센터"}
+    },
+    {
+      "start": 2021,
+      "end": 2025,
+      "org": {"en": "National Research Foundation of Korea", "ko": "한국연구재단"},
+      "title": {"en": "Deep-tissue microscopy by spatiotemporal gating", "ko": "시공간 게이팅 기반 심부 조직 현미경"},
+      "points": [
+        {
+          "en": "Developed a differential-detection method for high-resolution ultrasound-modulated optical tomography.",
+          "ko": "고해상도 초음파 변조 광단층영상을 위한 차동 검출법을 개발했다."
+        },
+        {
+          "en": "Synchronised ultrasonic and optical pulses for spatiotemporal gating; 2 talks and an M.S. thesis.",
+          "ko": "초음파와 광 펄스를 동기화한 시공간 게이팅을 구현했다. 학회 발표 2건, 석사 학위논문."
+        }
+      ],
+      "kind": "government",
+      "org_short": {"en": "NRF Korea", "ko": "한국연구재단"}
+    },
+    {
+      "start": 2022,
+      "end": 2025,
+      "org": {"en": "Samsung Electronics DS", "ko": "삼성전자 DS부문"},
+      "title": {"en": "Computational imaging for semiconductor inspection", "ko": "반도체 검사를 위한 계산 영상"},
+      "points": [
+        {"en": "Built a fully functional Fourier ptychographic microscope.", "ko": "푸리에 타이코그래피 현미경을 처음부터 구축했다."},
+        {
+          "en": "Developed aberration-correction algorithms and alignment protocols for industrial inspection.",
+          "ko": "산업 검사용 수차 보정 알고리즘과 정렬 절차를 개발했다."
+        },
+        {
+          "en": "Engineered inverse-design techniques for stacked-metasurface phase maps.",
+          "ko": "적층 메타표면 위상 지도의 역설계 기법을 개발했다."
+        }
+      ],
+      "kind": "industry",
+      "org_short": {"en": "Samsung Electronics DS", "ko": "삼성전자 DS"}
+    },
+    {
+      "start": 2025,
+      "end": 2026,
+      "org": {"en": "LG Electronics", "ko": "LG전자"},
+      "title": {"en": "Beam shaping with metasurfaces", "ko": "메타표면 빔 성형"},
+      "points": [
+        {
+          "en": "Fabricated a wide-field-of-view metasurface for an ultra-compact projector.",
+          "ko": "초소형 프로젝터용 광시야 메타표면을 제작했다."
+        },
+        {"en": "Developed an efficient large-scale wave-propagation simulator.", "ko": "대면적 파동 전파 시뮬레이터를 효율적으로 구현했다."}
+      ],
+      "kind": "industry",
+      "org_short": {"en": "LG Electronics", "ko": "LG전자"}
+    }
+  ],
+  "grants": [
+    {
+      "year": 2021,
+      "org": {"en": "KAIST College of Engineering", "ko": "KAIST 공과대학"},
+      "title": {
+        "en": "Master's & Ph.D. Adventure Research · finalist, ₩10M",
+        "ko": "석박사 도전연구(Adventure Research) · 최종 선정, 1,000만 원"
+      },
+      "body": {
+        "en": "Student leader. A portable 3D fluorescence imager built on deep neural networks and scattering media, for miniaturised nucleic-acid diagnostics.",
+        "ko": "학생 연구 책임자. 딥러닝과 산란 매질 기반 휴대형 3차원 형광 영상 장치로 소형 핵산 진단을 겨냥했다."
+      }
+    },
+    {
+      "year": 2021,
+      "org": {"en": "KAIST Startup Support Foundation", "ko": "KAIST 창업지원재단"},
+      "title": {"en": "Preliminary Startup Team Support · ₩9M", "ko": "예비 창업팀 지원 · 900만 원"},
+      "body": {
+        "en": "Student leader. A portable nucleic-acid diagnostic device based on on-chip hyperspectral imaging.",
+        "ko": "학생 팀장. 온칩 초분광 영상 기반 휴대형 핵산 진단 장치."
+      }
+    }
+  ],
+  "skills": [
+    {
+      "icon": "chip",
+      "title": {"en": "Cleanroom", "ko": "클린룸 공정"},
+      "groups": [
+        {
+          "k": {"en": "Deposition", "ko": "증착"},
+          "v": ["PECVD (SiO₂, SiNₓ)", "Thermal evaporation", "E-beam evaporation"]
+        },
+        {
+          "k": {"en": "Lithography", "ko": "리소그래피"},
+          "v": ["Photolithography", "E-beam lithography", "Soft lithography"]
+        },
+        {
+          "k": {"en": "Etching", "ko": "식각"},
+          "v": ["ICP-RIE", "Wet etching", "Lift-off"]
+        }
+      ]
+    },
+    {
+      "icon": "lab",
+      "title": {"en": "Optical bench", "ko": "광학 실험"},
+      "groups": [
+        {
+          "k": {"en": "Holography", "ko": "홀로그래피"},
+          "v": [
+            "Off-axis",
+            "Phase-stepping (EOM, AOM)",
+            "Frequency-modulated (AOM + focused ultrasound)",
+            "Time-gated (fs laser)",
+            "Pulse-synchronised (ns laser + pulsed ultrasound)"
+          ]
+        },
+        {
+          "k": {"en": "Wavefront shaping", "ko": "파면 제어"},
+          "v": ["Digital optical phase conjugation (DMD, SLM)"]
+        },
+        {
+          "k": {"en": "Systems built", "ko": "구축한 장비"},
+          "v": [
+            "Fast-scanning monochromator",
+            "Hyperspectral object projector",
+            "Confocal microscope",
+            "Fourier ptychographic microscope"
+          ]
+        }
+      ]
+    },
+    {
+      "icon": "code",
+      "title": {"en": "Code & simulation", "ko": "코드·시뮬레이션"},
+      "groups": [
+        {
+          "k": {"en": "Languages", "ko": "언어"},
+          "v": ["Python (PyTorch, TensorFlow)", "MATLAB", "C/C++"]
+        },
+        {
+          "k": {"en": "Simulation", "ko": "시뮬레이션"},
+          "v": ["FDTD", "RCWA", "Large-scale wave propagation"]
+        }
+      ]
+    },
+    {
+      "icon": "cube",
+      "title": {"en": "Prototyping", "ko": "프로토타이핑"},
+      "groups": [
+        {
+          "k": {"en": "Modelling", "ko": "모델링"},
+          "v": ["Fusion 360"]
+        },
+        {
+          "k": {"en": "Visualisation", "ko": "시각화"},
+          "v": ["Blender", "Maya", "Illustrator"]
+        },
+        {
+          "k": {"en": "Fabrication", "ko": "제작"},
+          "v": ["FDM 3D printing", "SLA/DLP 3D printing", "Laser cutting"]
+        }
+      ]
+    }
+  ]
+}

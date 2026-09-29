@@ -1,0 +1,174 @@
+{
+  "featured": [
+    {
+      "paper": "optica2026",
+      "summary": {
+        "en": "Single-shot phase imaging of an object placed between two dynamic scattering layers. Focusing the illumination onto a small area of the first layer limits the number of transmitted spatial modes and preserves spatial coherence between the layers, so that the measurement can be modelled as a blurred hologram. A physics-guided joint optimization based on the deep image prior estimates the object phase, the scattering blur kernel and the propagation distance from one intensity image, without training data or separate calibration.",
+        "ko": "두 동적 산란층 사이에 놓인 물체의 위상을 한 번의 촬영으로 복원하는 연구. 첫 번째 산란층의 좁은 영역에 빛을 집속해 투과하는 공간 모드 수를 줄이면 두 층 사이에 공간적 결맞음이 유지되고, 측정 영상을 흐려진 홀로그램으로 모델링할 수 있다. Deep Image Prior 기반 물리 모델 공동 최적화로 세기 영상 한 장에서 물체 위상, 산란 흐림 커널, 전파 거리를 학습 데이터나 별도 보정 없이 추정한다."
+      },
+      "results": [
+        {
+          "en": "Resolved 57 lp/mm (8.77 μm line width) on a PDMS phase target between two dynamic scattering layers",
+          "ko": "두 동적 산란층 사이의 PDMS 위상 표적에서 57 lp/mm(선폭 8.77 μm) 분해"
+        },
+        {"en": "Phase delays up to 1.75π recovered", "ko": "최대 1.75π 위상 지연 복원"},
+        {"en": "Scattering layers with a memory effect down to 0.2°", "ko": "메모리 효과 0.2° 수준의 산란층까지 적용"},
+        {
+          "en": "No training data and no separate calibration of the blur kernel or distance",
+          "ko": "학습 데이터와 흐림 커널·거리의 별도 보정 불필요"
+        }
+      ],
+      "figures": [
+        {
+          "src": "/static/img/op-fig1.webp",
+          "alt": {
+            "en": "Comparison of plane-wave and point illumination through dynamic scattering layers and the resulting intensity images",
+            "ko": "평면파 조명과 점조명 조건에서 동적 산란층을 통과한 측정 영상 비교"
+          },
+          "caption": {
+            "en": "Plane-wave illumination (a, b) versus point illumination (c, d) through dynamic scattering layers S1 and S2. Kim, Song *et al.*, Optica 13, 1245 (2026).",
+            "ko": "동적 산란층 S1·S2에서 평면파 조명(a, b)과 점조명(c, d) 비교. Kim, Song 외, Optica 13, 1245 (2026)."
+          }
+        },
+        {
+          "src": "/static/img/op-fig3.webp",
+          "alt": {
+            "en": "Experimental setup, measured intensity image and reconstructed phase of a resolution target",
+            "ko": "실험 구성, 측정 세기 영상, 해상도 표적의 복원 위상"
+          },
+          "caption": {
+            "en": "(a) Setup with dynamic layers S1 and S2. (b) Measured intensity. (c) Reconstructed phase and scattering blur kernel. Kim, Song *et al.*, Optica 13, 1245 (2026).",
+            "ko": "(a) 동적 산란층 S1·S2를 포함한 실험 구성. (b) 측정 세기 영상. (c) 복원한 위상과 산란 흐림 커널. Kim, Song 외, Optica 13, 1245 (2026)."
+          }
+        }
+      ]
+    },
+    {
+      "paper": "tpami2025",
+      "summary": {
+        "en": "A plug-and-play inverse solver for imaging through dynamic scattering layers that combines a video diffusion model with a physically grounded forward model, extending diffusion posterior sampling to the spatio-temporal domain. A lightweight mapping network estimates the forward-model parameters at inference time without retraining, enabling blind reconstruction under time-varying degradation.",
+        "ko": "비디오 확산 모델과 물리 기반 전방 모델을 결합해 동적 산란층 너머의 영상을 복원하는 플러그 앤 플레이 역문제 풀이 기법. 확산 사후 샘플링(DPS)을 시공간 영역으로 확장했으며, 가벼운 매핑 네트워크가 추론 단계에서 전방 모델 변수를 추정해 재학습 없이 시간에 따라 변하는 열화에 대응한다."
+      },
+      "results": [
+        {
+          "en": "Validated on simulated and real optical measurements across layer thicknesses and scene–layer distances",
+          "ko": "산란층 두께와 물체–산란층 거리를 바꾼 시뮬레이션과 실제 광학 측정에서 검증"
+        },
+        {
+          "en": "Recovers spatial detail that frame-by-frame reconstruction misses by using temporal correlations",
+          "ko": "시간 상관관계를 이용해 프레임별 복원이 놓치는 공간 세부 구조 복원"
+        },
+        {
+          "en": "Also applied to dehazing, deblurring, inpainting and blind restoration under complex aberrations",
+          "ko": "안개 제거, 디블러링, 인페인팅, 복잡한 수차의 블라인드 복원에도 적용"
+        }
+      ],
+      "figures": [
+        {
+          "src": "/static/img/tp-config.webp",
+          "alt": {
+            "en": "Optical configuration: a video object behind a dynamic scattering layer",
+            "ko": "광학 구성: 동적 산란층 뒤의 비디오 물체"
+          },
+          "caption": {
+            "en": "Optical configuration. Kwon, Song *et al.*, IEEE TPAMI 47, 11152 (2025), Fig. 1. © IEEE.",
+            "ko": "광학 구성. Kwon, Song 외, IEEE TPAMI 47, 11152 (2025), 그림 1. © IEEE."
+          }
+        },
+        {
+          "src": "/static/img/tp-real.webp",
+          "alt": {
+            "en": "Real measurements through a dynamic scattering layer and the reconstructed video frames",
+            "ko": "동적 산란층을 통과한 실제 측정 영상과 복원한 비디오 프레임"
+          },
+          "caption": {
+            "en": "Real measurements at different layer spacings L and distances d (left) and reconstructions (right). Fig. 8(a). © IEEE.",
+            "ko": "층 간격 L과 거리 d를 바꾼 실제 측정(왼쪽)과 복원 결과(오른쪽). 그림 8(a). © IEEE."
+          }
+        }
+      ]
+    },
+    {
+      "paper": "sciadv2025",
+      "summary": {
+        "en": "A reconstructive spectrometer in which two stacked layers of disordered metasurface (SiNₓ nanoposts of random widths) are mounted directly on an image sensor. Each wavelength produces a distinct speckle pattern; the spectrum is recovered by solving a linear inverse problem against a speckle library that is computed from the known metasurface design instead of being measured wavelength by wavelength.",
+        "ko": "무작위 폭의 질화규소 나노기둥으로 된 무질서 메타표면 두 층을 이미지 센서 위에 직접 쌓은 재구성형 분광기. 파장마다 서로 다른 스페클 무늬가 생기며, 메타표면 설계로부터 계산한 스페클 라이브러리를 이용해 선형 역문제를 풀어 스펙트럼을 복원한다. 라이브러리를 파장별로 측정할 필요가 없다."
+      },
+      "results": [
+        {"en": "Spectral resolution of about 1 nm", "ko": "분광 분해능 약 1 nm"},
+        {"en": "Operating range 440–660 nm with 221 spectral channels", "ko": "작동 대역 440–660 nm, 221개 분광 채널"},
+        {"en": "Form factor under 1 cm", "ko": "소자 크기 1 cm 이하"},
+        {
+          "en": "Related: US Patent 12,571,712 B2 and KR 10-3018644; Student Paper Prize, Optica Imaging Congress 2025; Photonics Breakthroughs 2025 (IEEE Photonics Journal)",
+          "ko": "관련: 미국 특허 12,571,712 B2·한국 특허 10-3018644, Optica Imaging Congress 2025 학생 논문상, IEEE Photonics Journal Photonics Breakthroughs 2025"
+        }
+      ],
+      "figures": [
+        {
+          "src": "/static/img/sa-schematic.webp",
+          "alt": {
+            "en": "Schematic of the reconstructive spectrometer based on double-layer disordered metasurfaces",
+            "ko": "이중층 무질서 메타표면 기반 재구성형 분광기 모식도"
+          },
+          "caption": {
+            "en": "Schematic. Lee, Song *et al.*, Sci. Adv. 11, eadv2376 (2025), Fig. 1. CC BY-NC 4.0.",
+            "ko": "모식도. Lee, Song 외, Sci. Adv. 11, eadv2376 (2025), 그림 1. CC BY-NC 4.0."
+          }
+        },
+        {
+          "src": "/static/img/sa-device.webp",
+          "alt": {
+            "en": "Photograph of the spectrometer module, the metasurface and an electron micrograph of the nanoposts",
+            "ko": "분광기 모듈, 메타표면, 나노기둥 전자현미경 사진"
+          },
+          "caption": {
+            "en": "Device, metasurface and SEM image of the nanoposts. Fig. 2A.",
+            "ko": "소자, 메타표면, 나노기둥 전자현미경 사진. 그림 2A."
+          }
+        }
+      ]
+    }
+  ],
+  "other": [
+    {
+      "title": {"en": "Holographic imaging with physics-guided deep learning", "ko": "물리 기반 딥러닝 홀로그래피"},
+      "text": {
+        "en": "Deep learning with a parameterized physical forward model for adaptive holographic imaging trained on unpaired data; review of deep learning for lensless imaging.",
+        "ko": "매개변수화한 물리 전방 모델과 짝 없는 데이터로 학습하는 적응형 홀로그래피, 무렌즈 영상 딥러닝 리뷰."
+      },
+      "papers": ["nmi2023", "jkps2022"]
+    },
+    {
+      "title": {"en": "Computational microscopy", "ko": "계산 현미경"},
+      "text": {
+        "en": "Tolerance of Fourier ptychographic microscopy to system–model mismatch; motion-free lensless on-chip microscopy with an LED matrix.",
+        "ko": "푸리에 타이코그래피 현미경의 시스템–모델 불일치 허용 범위 분석, LED 배열을 이용한 무이동 무렌즈 온칩 현미경."
+      },
+      "papers": ["apr2025", "oe2024"]
+    },
+    {
+      "title": {"en": "Wavefront sensing and control", "ko": "파면 측정과 제어"},
+      "text": {
+        "en": "Metasurface Shack–Hartmann wavefront sensor with high sampling density and wide angular field of view; MHz-rate large-volume focus control by scattering-assisted holography.",
+        "ko": "높은 샘플링 밀도와 넓은 각도 시야의 메타표면 샥-하트만 파면 센서, 산란 보조 홀로그래피를 이용한 MHz급 대부피 초점 제어."
+      },
+      "papers": ["lsa2024", "ncomms2024"]
+    },
+    {
+      "title": {"en": "Endomicroscopy and deep-tissue imaging", "ko": "내시현미경과 심부 조직 영상"},
+      "text": {
+        "en": "Review of endomicroscopy with coherent light control through ultrathin probes. M.S. thesis on differential detection of ultrasound-modulated light for deep-tissue imaging.",
+        "ko": "초박형 프로브를 통한 결맞은 빛 제어 내시현미경 리뷰. 석사 학위논문: 초음파 변조광 차동 측정 기반 심부 조직 영상."
+      },
+      "papers": ["jom2023"]
+    },
+    {
+      "title": {"en": "Optical computing with disordered media", "ko": "무질서 매질 기반 광 컴퓨팅"},
+      "text": {
+        "en": "All-optical two-layer network using a disordered medium for multimodal optical-field inference (preprint).",
+        "ko": "무질서 매질을 이용한 두 층 전광 신경망으로 광학장의 다중 모드 정보 추론 (프리프린트)."
+      },
+      "papers": ["arxiv2026"]
+    }
+  ]
+}

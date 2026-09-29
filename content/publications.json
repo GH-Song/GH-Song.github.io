@@ -1,0 +1,265 @@
+{
+  "topics": {
+    "spectrum": {"en": "Spectroscopy", "ko": "분광"},
+    "scattering": {"en": "Scattering", "ko": "산란 영상"},
+    "holography": {"en": "Holography & AI", "ko": "홀로그래피·AI"},
+    "microscopy": {"en": "Microscopy", "ko": "현미경"},
+    "wavefront": {"en": "Wavefront", "ko": "파면"}
+  },
+  "papers": [
+    {
+      "key": "arxiv2026",
+      "type": "preprint",
+      "title": "Random-mapped intensity optical neural network: all-optical two-layer computing for multimodal optical-field inference",
+      "authors": ["G.-H. Go", "D. Lee", "G. Song", "M. Jang"],
+      "authors_full": ["Gi-Hyun Go", "Doeon Lee", "Gookho Song", "Mooseok Jang"],
+      "venue": "arXiv",
+      "venue_short": "arXiv",
+      "year": 2026,
+      "date": "2026-09-02",
+      "pages": "2609.02698",
+      "doi": "10.48550/arXiv.2609.02698",
+      "pdf": "https://arxiv.org/abs/2609.02698",
+      "oa": true,
+      "tags": ["wavefront"],
+      "summary": {
+        "en": "A disordered medium, a programmable intensity mask and segmented power summation form an all-optical two-layer network that breaks the rank-one limit of linear optical networks, classifying amplitude, phase and polarization inputs in one optical configuration.",
+        "ko": "무질서 매질, 프로그래밍 가능한 세기 마스크, 구획별 광량 합산으로 이루어진 두 층짜리 전광 신경망. 선형 광학 신경망의 rank-one 한계를 넘어, 하나의 광학 구성으로 진폭·위상·편광 입력을 모두 분류했다."
+      }
+    },
+    {
+      "key": "optica2026",
+      "title": "Single-shot imaging of phase objects fully enclosed by dynamic scattering layers",
+      "authors": ["Y. Kim†", "G. Song†", "H. Kim", "C. Lee", "M. Jang*"],
+      "authors_full": ["Yoosun Kim", "Gookho Song", "Hyeonggeon Kim", "Chanseok Lee", "Mooseok Jang"],
+      "venue": "Optica",
+      "venue_short": "Optica",
+      "year": 2026,
+      "date": "2026-07-01",
+      "volume": 13,
+      "issue": 7,
+      "pages": "1245–1253",
+      "doi": "10.1364/OPTICA.593328",
+      "oa": true,
+      "tags": ["first", "scattering"],
+      "stories": ["optica2026"],
+      "thumb": "/static/img/op-phase.webp",
+      "summary": {
+        "en": "Tightly focused illumination keeps light coherent between two moving diffusers, turning random scattering into solvable holography; one frame yields phase, blur kernel and distance.",
+        "ko": "점조명으로 움직이는 두 산란층 사이의 결맞음을 지켜 무작위 산란을 풀 수 있는 홀로그래피 문제로 바꾸고, 영상 한 장에서 위상·흐림 커널·거리를 복원했다."
+      }
+    },
+    {
+      "key": "pj2026",
+      "title": "Photonics Breakthroughs 2025: Reconstructive spectrometer using double-layer disordered metasurfaces",
+      "authors": ["S. Park", "D. Lee", "N. Kim", "W. Tian", "G. Song", "M. Jang"],
+      "authors_full": ["Sechan Park", "Dong-gu Lee", "Nahee Kim", "Weibo Tian", "Gookho Song", "Mooseok Jang"],
+      "venue": "IEEE Photonics Journal",
+      "venue_short": "IEEE Photonics J.",
+      "year": 2026,
+      "date": "2026-05-22",
+      "volume": 18,
+      "issue": 4,
+      "pages": "5100307",
+      "doi": "10.1109/JPHOT.2026.3696089",
+      "oa": true,
+      "highlight": {"en": "Photonics Breakthroughs 2025", "ko": "2025 포토닉스 혁신 성과"},
+      "tags": ["spectrum"],
+      "summary": {
+        "en": "Invited feature naming the double-layer metasurface spectrometer one of the photonics breakthroughs of 2025, set against the wider field of reconstructive spectroscopy.",
+        "ko": "이중층 메타표면 분광기를 2025년 포토닉스 혁신 성과로 선정하고, 재구성형 분광 분야 전반과 함께 소개한 초청 논문."
+      }
+    },
+    {
+      "key": "sciadv2025",
+      "title": "Reconstructive spectrometer using double-layer disordered metasurfaces",
+      "authors": ["D. Lee†", "G. Song†", "C. Lee", "C. Lee", "M. Jang*"],
+      "authors_full": ["Dong-gu Lee", "Gookho Song", "Chunghyung Lee", "Chanseok Lee", "Mooseok Jang"],
+      "venue": "Science Advances",
+      "venue_short": "Sci. Adv.",
+      "year": 2025,
+      "date": "2025-05-28",
+      "volume": 11,
+      "issue": 22,
+      "pages": "eadv2376",
+      "doi": "10.1126/sciadv.adv2376",
+      "oa": true,
+      "tags": ["first", "spectrum"],
+      "stories": ["sciadv2025"],
+      "thumb": "/static/img/sa-schematic.webp",
+      "summary": {
+        "en": "Two stacked disordered metasurfaces on an image sensor make a spectrometer under 1 cm with ~1 nm resolution and 221 channels over 440–660 nm; its speckle library is computed, not measured.",
+        "ko": "이미지 센서 위에 쌓은 무질서 메타표면 두 장으로 1 cm 이하, 440–660 nm에서 221채널·약 1 nm 분해능의 분광기를 만들었다. 스페클 라이브러리는 측정하지 않고 계산한다."
+      }
+    },
+    {
+      "key": "tpami2025",
+      "title": "Video diffusion posterior sampling for seeing beyond dynamic scattering layers",
+      "authors": ["T. Kwon†", "G. Song†", "Y. Kim", "J. Kim", "J. C. Ye*", "M. Jang*"],
+      "authors_full": ["Taesung Kwon", "Gookho Song", "Yoosun Kim", "Jeongsol Kim", "Jong Chul Ye", "Mooseok Jang"],
+      "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "venue_short": "IEEE TPAMI",
+      "year": 2025,
+      "date": "2025-08-13",
+      "volume": 47,
+      "issue": 12,
+      "pages": "11152–11167",
+      "doi": "10.1109/TPAMI.2025.3598457",
+      "oa": false,
+      "code": "https://github.com/star-kwon/VDPS",
+      "tags": ["first", "scattering"],
+      "stories": ["tpami2025"],
+      "thumb": "/static/img/tp-config.webp",
+      "summary": {
+        "en": "A video diffusion prior plus a physical model of dynamic scattering recovers hidden video, estimating the unknown, time-varying degradation at inference time.",
+        "ko": "비디오 확산 사전 모델과 동적 산란의 물리 모델을 결합해 가려진 비디오를 복원하고, 시간에 따라 변하는 미지의 열화를 추론 단계에서 추정한다."
+      }
+    },
+    {
+      "key": "apr2025",
+      "title": "Impact of system–model mismatch in Fourier ptychographic microscopy",
+      "authors": ["T. Yin", "G. Song", "D. Lee", "J. Oh", "M. Jang"],
+      "authors_full": ["Tuo Yin", "Gookho Song", "Doeon Lee", "Jaeyeon Oh", "Mooseok Jang"],
+      "venue": "Advanced Photonics Research",
+      "venue_short": "Adv. Photonics Res.",
+      "year": 2025,
+      "date": "2025-10-05",
+      "volume": 6,
+      "issue": 12,
+      "pages": "e202500180",
+      "doi": "10.1002/adpr.202500180",
+      "oa": true,
+      "tags": ["microscopy"],
+      "summary": {
+        "en": "How much specimen defocus, sample thickness, magnification and LED placement errors a Fourier ptychographic microscope can tolerate, and how that tolerance scales with its optical configuration.",
+        "ko": "푸리에 타이코그래피 현미경이 시료 초점 어긋남, 두께, 배율, LED 위치 오차를 어디까지 견디는지, 그 허용 범위가 광학 구성에 따라 어떻게 달라지는지 정리했다."
+      }
+    },
+    {
+      "key": "ncomms2024",
+      "title": "Large-volume focus control at 10 MHz refresh rate via fast line-scanning amplitude-encoded scattering-assisted holography",
+      "authors": ["A. Shibukawa", "R. Higuchi", "G. Song", "H. Mikami", "Y. Sudo", "M. Jang"],
+      "authors_full": ["Atsushi Shibukawa", "Ryota Higuchi", "Gookho Song", "Hideharu Mikami", "Yuki Sudo", "Mooseok Jang"],
+      "venue": "Nature Communications",
+      "venue_short": "Nat. Commun.",
+      "year": 2024,
+      "date": "2024-04-08",
+      "volume": 15,
+      "issue": 1,
+      "pages": "2926",
+      "doi": "10.1038/s41467-024-47009-w",
+      "oa": true,
+      "pdf": "https://arxiv.org/abs/2306.12031",
+      "tags": ["wavefront"],
+      "summary": {
+        "en": "A fast 1D scanner drives a slow 2D modulator, so focus control runs more than 1,000 times faster than the micromirror device's own switching rate.",
+        "ko": "빠른 1차원 스캐너로 느린 2차원 공간 광변조기를 구동해, 디지털 마이크로미러 소자 자체보다 1,000배 이상 빠르게 초점을 제어했다."
+      }
+    },
+    {
+      "key": "lsa2024",
+      "title": "Meta Shack–Hartmann wavefront sensor with large sampling density and large angular field of view: phase imaging of complex objects",
+      "authors": ["G.-H. Go", "D. Lee", "J. Oh", "G. Song", "D. Lee", "M. Jang"],
+      "authors_full": ["Gi-Hyun Go", "Dong-gu Lee", "Jaeyeon Oh", "Gookho Song", "Doeon Lee", "Mooseok Jang"],
+      "venue": "Light: Science & Applications",
+      "venue_short": "Light Sci. Appl.",
+      "year": 2024,
+      "date": "2024-08-12",
+      "volume": 13,
+      "issue": 1,
+      "pages": "187",
+      "doi": "10.1038/s41377-024-01528-9",
+      "oa": true,
+      "tags": ["wavefront"],
+      "stories": ["lsa2024"],
+      "summary": {
+        "en": "A metasurface lenslet array reaches 5,963 samples per mm² and an 8° acceptance angle, an order of magnitude beyond conventional Shack–Hartmann sensors, enough to image the phase of complex objects.",
+        "ko": "메타표면 렌즈 배열로 mm²당 5,963개 샘플과 8° 수광각을 얻어 기존 샥-하트만 센서보다 한 자릿수 높은 성능으로 복잡한 물체의 위상을 영상화했다."
+      }
+    },
+    {
+      "key": "oe2024",
+      "title": "Motion-free high-resolution on-chip microscopy using LED matrix",
+      "authors": ["J. You†", "D. Lee†", "G. Song", "C. Lee", "M. Jang"],
+      "authors_full": ["Jongin You", "Doeon Lee", "Gookho Song", "Chanseok Lee", "Mooseok Jang"],
+      "venue": "Optics Express",
+      "venue_short": "Opt. Express",
+      "year": 2024,
+      "date": "2024-09-25",
+      "volume": 32,
+      "issue": 21,
+      "pages": "36549–36562",
+      "doi": "10.1364/OE.537127",
+      "oa": true,
+      "tags": ["microscopy"],
+      "summary": {
+        "en": "A lens-free microscope that swaps mechanical stages for an RGB LED matrix, reaching a 30-megapixel space-bandwidth product at 0.87 µm resolution with no moving parts.",
+        "ko": "기계식 스테이지 대신 RGB LED 배열을 쓰는 무렌즈 현미경으로, 움직이는 부품 없이 0.87 µm 해상도와 3,000만 화소 공간-대역폭 곱을 얻었다."
+      }
+    },
+    {
+      "key": "nmi2023",
+      "title": "Deep learning based on parameterized physical forward model for adaptive holographic imaging with unpaired data",
+      "authors": ["C. Lee", "G. Song", "H. Kim", "J. C. Ye", "M. Jang"],
+      "authors_full": ["Chanseok Lee", "Gookho Song", "Hyeonggeon Kim", "Jong Chul Ye", "Mooseok Jang"],
+      "venue": "Nature Machine Intelligence",
+      "venue_short": "Nat. Mach. Intell.",
+      "year": 2023,
+      "date": "2023-01-16",
+      "volume": 5,
+      "issue": 1,
+      "pages": "35–45",
+      "doi": "10.1038/s42256-022-00584-3",
+      "oa": false,
+      "code": "https://github.com/csleemooo/Deep_learning_based_on_parameterized_physical_forward_model_for_adaptive_holographic_imaging",
+      "tags": ["holography"],
+      "stories": ["nmi2023"],
+      "summary": {
+        "en": "A network with a parameterised physical forward model recovers both the complex amplitude and the distance of objects, even beyond the distances seen in training; shown on flowing red blood cells and tissue slides.",
+        "ko": "물리 전방 모델을 매개변수화한 신경망으로 물체의 복소 진폭과 거리를 함께 복원했다. 학습 범위 밖의 거리에서도 작동하며, 흐르는 적혈구와 조직 슬라이드로 검증했다."
+      }
+    },
+    {
+      "key": "jom2023",
+      "title": "Review of endomicroscopic imaging with coherent manipulation of light through an ultrathin probe",
+      "authors": ["J. Oh", "C. Lee", "G. Song", "M. Jang"],
+      "authors_full": ["Jaeyeon Oh", "Chunghyeong Lee", "Gookho Song", "Mooseok Jang"],
+      "venue": "Journal of Optical Microsystems",
+      "venue_short": "J. Opt. Microsyst.",
+      "year": 2023,
+      "date": "2023-01-09",
+      "volume": 3,
+      "issue": 1,
+      "pages": "011004",
+      "doi": "10.1117/1.JOM.3.1.011004",
+      "oa": true,
+      "highlight": {"en": "Invited review", "ko": "초청 리뷰"},
+      "tags": ["wavefront"],
+      "summary": {
+        "en": "Review of endomicroscopes that treat an ultrathin fibre as a coherent channel, controlling light through it deterministically for focusing and imaging.",
+        "ko": "초박형 광섬유를 결맞은 채널로 보고 빛을 결정론적으로 제어해 초점을 맺고 영상을 얻는 내시현미경 기술 리뷰."
+      }
+    },
+    {
+      "key": "jkps2022",
+      "title": "Deep learning for lensless imaging",
+      "authors": ["H. Kim", "G. Song", "J. You", "C. Lee", "M. Jang"],
+      "authors_full": ["Hyeonggeon Kim", "Gookho Song", "Jongin You", "Chanseok Lee", "Mooseok Jang"],
+      "venue": "Journal of the Korean Physical Society",
+      "venue_short": "J. Korean Phys. Soc.",
+      "year": 2022,
+      "date": "2022-02-01",
+      "volume": 81,
+      "issue": 6,
+      "pages": "570–579",
+      "doi": "10.1007/s40042-022-00412-2",
+      "oa": false,
+      "highlight": {"en": "Invited review", "ko": "초청 리뷰"},
+      "tags": ["holography"],
+      "summary": {
+        "en": "Review of deep-learning methods that make holographic reconstruction in lensless imaging fast and robust.",
+        "ko": "무렌즈 영상의 홀로그래피 복원을 빠르고 안정적으로 만드는 딥러닝 기법 리뷰."
+      }
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "status_labels": {
+    "granted": {"en": "Granted", "ko": "등록"},
+    "pending": {"en": "Pending", "ko": "출원"},
+    "published": {"en": "Published", "ko": "공개"}
+  },
+  "awards": [
+    {
+      "date": "2025-08",
+      "title": {"en": "Student Paper Prize", "ko": "학생 논문상 (Student Paper Prize)"},
+      "org": {
+        "en": "Optica Imaging Congress, Computational Optical Sensing and Imaging (COSI) · Seattle, WA, USA",
+        "ko": "Optica Imaging Congress, Computational Optical Sensing and Imaging (COSI) · 미국 시애틀"
+      },
+      "note": {"en": "Sole winner in the COSI track, awarded for an oral presentation.", "ko": "COSI 분과 단독 수상 (구두 발표)."},
+      "short": {"en": "incl. Optica Student Paper Prize", "ko": "Optica 학생 논문상 포함"}
+    },
+    {
+      "date": "2024",
+      "title": {"en": "Best Student Paper Award, 1st Place", "ko": "최우수 학생 논문상 (1위)"},
+      "org": {"en": "Next-Generation Lithography & Patterning Conference · Korea", "ko": "차세대 리소그래피·패터닝 학술대회 (NGL) · 한국"},
+      "note": {
+        "en": "1st place; research grant of ₩1,000,000. Topic: metasurface wavefront sensor for semiconductor metrology.",
+        "ko": "1위, 연구 장려금 100만 원. 주제: 반도체 계측용 메타표면 파면 센서."
+      }
+    },
+    {
+      "date": "2024-07-25",
+      "title": {"en": "Best Presentation Award", "ko": "최우수 발표상"},
+      "org": {"en": "KAIST Optics Group Student Poster Competition", "ko": "KAIST 광학 그룹 학생 포스터 경연"},
+      "note": {
+        "en": "Topic: compact spectrometer based on a double-layer disordered metasurface.",
+        "ko": "주제: 이중층 무질서 메타표면 기반 소형 분광기."
+      }
+    }
+  ],
+  "patents": [
+    {
+      "title": {"en": "Ultrasensitive spectrometer", "ko": "초민감 분광기 (Ultrasensitive spectrometer)"},
+      "inventors": ["M. Jang", "G. Song", "C. Lee", "D. G. Lee"],
+      "assignee": "KAIST",
+      "filings": [
+        {
+          "office": "US",
+          "number": "US 12,571,712 B2",
+          "status": "granted",
+          "date": "2026-03-10",
+          "url": "https://patents.google.com/patent/US12571712B2/en"
+        },
+        {"office": "KR", "number": "KR 10-3018644", "status": "granted", "date": "2026-09-08"}
+      ]
+    },
+    {
+      "title": {"en": "Hyperspectral image sensor and system employing the same", "ko": "초분광 이미지 센서 및 이를 포함하는 시스템"},
+      "inventors": ["M. Jang", "G. Song", "D. Lee"],
+      "assignee": "KAIST",
+      "filings": [
+        {"office": "KR", "number": "KR 10-2926493", "status": "granted", "date": "2026-02-06"},
+        {
+          "office": "US",
+          "number": "US 2024/0280406 A1",
+          "status": "pending",
+          "date": "2024-08-22",
+          "url": "https://patents.google.com/patent/US20240280406A1/en"
+        }
+      ]
+    },
+    {
+      "title": {"en": "Compact microscope based on a random-encoding metasurface", "ko": "무작위 부호화 메타표면 기반 소형 현미경"},
+      "inventors": ["G. Song", "M. Jang"],
+      "assignee": "KAIST",
+      "filings": [
+        {"office": "KR", "number": "KR 10-2025-0132777", "status": "pending", "date": "2025"}
+      ]
+    }
+  ],
+  "inventions": {
+    "title": {"en": "Inventor since high school", "ko": "고등학생 때부터 발명가"},
+    "body": {
+      "en": "Founded and led Sekwang High School's first invention and patenting club (2012–2014), ran workshops and guided members through filing. Three applications of my own:",
+      "ko": "세광고등학교 최초의 발명·특허 동아리를 만들어 이끌며(2012–2014) 워크숍을 열고 부원들의 특허 출원을 도왔다. 직접 출원한 발명은 세 건이다."
+    },
+    "items": [
+      {
+        "en": "*Mechanism for contact-lens application* · KR 10-2013-0090667",
+        "ko": "*콘택트렌즈 착용 보조 기구* · KR 10-2013-0090667"
+      },
+      {
+        "en": "*Repair tool for mechanical-pencil tips* · KR 20-2014-0009434",
+        "ko": "*샤프펜슬 촉 수리 도구* · KR 20-2014-0009434"
+      },
+      {"en": "*Pen-cap holder cradle* · KR 20-2014-0009014", "ko": "*펜 뚜껑 거치대* · KR 20-2014-0009014"}
+    ]
+  }
+}

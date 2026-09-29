@@ -1,0 +1,44 @@
+{
+  "url": "https://gh-song.github.io",
+  "repo": "https://github.com/GH-Song/GH-Song.github.io",
+  "updated": "2026-09-29",
+  "title": {"en": "Gookho Song (송국호) · KAIST", "ko": "송국호 (Gookho Song) · KAIST"},
+  "description": {
+    "en": "Gookho Song (송국호), Ph.D. candidate, Department of Bio and Brain Engineering, KAIST. Publications, awards, patents, conference presentations and press coverage.",
+    "ko": "송국호 (Gookho Song), KAIST 바이오및뇌공학과 박사과정. 논문, 수상, 특허, 학회 발표, 언론 보도."
+  },
+  "name": {"en": "Gookho Song", "ko": "송국호"},
+  "name_alt": {"en": "송국호", "ko": "Gookho Song"},
+  "role": {"en": "Ph.D. Candidate, Department of Bio and Brain Engineering, KAIST", "ko": "KAIST 바이오및뇌공학과 박사과정"},
+  "email": "gookho.song@kaist.ac.kr",
+  "links": [
+    {
+      "id": "scholar",
+      "label": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=YJQV1tgAAAAJ&hl=en"
+    },
+    {"id": "github", "label": "GitHub", "url": "https://github.com/GH-Song"},
+    {"id": "orcid", "label": "ORCID", "url": "https://orcid.org/0000-0002-4906-9506"}
+  ],
+  "portrait": "/static/img/portrait.webp",
+  "scholar": {
+    "as_of": "2026-09",
+    "citations": 231,
+    "h_index": 8,
+    "i10_index": 7,
+    "per_year": {"2023": 11, "2024": 26, "2025": 88, "2026": 105}
+  },
+  "lab": {"name": "Mooo Lab", "url": "http://mooolab.kaist.ac.kr/"},
+  "verification": {"google": "", "naver": ""},
+  "portrait_alt": {"en": "Photo of Gookho Song", "ko": "송국호 사진"},
+  "interests": [
+    {"en": "Metasurfaces", "ko": "메타표면"},
+    {"en": "Computational imaging", "ko": "계산 영상"},
+    {"en": "Imaging through scattering media", "ko": "산란 매질 영상"},
+    {"en": "Computational spectroscopy & hyperspectral imaging", "ko": "계산 분광·초분광 영상"},
+    {"en": "Holographic imaging", "ko": "홀로그래피 영상"},
+    {"en": "Wavefront shaping", "ko": "파면 제어"},
+    {"en": "Fourier ptychography", "ko": "푸리에 타이코그래피"},
+    {"en": "Physics-guided deep learning", "ko": "물리 기반 딥러닝"}
+  ]
+}

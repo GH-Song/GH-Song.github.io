@@ -1,0 +1,44 @@
+/* CV page — mirrors the original cv.less (Charter look, A4), print-first.
+   Charis SIL is an open Charter derivative, so the PDF renders the same anywhere. */
+@page { size: A4; margin: 1.4cm 1.6cm; }
+* { box-sizing: border-box; }
+html { background: #eceae4; }
+body { margin: 0; font-family: "Charis SIL", Charter, "Bitstream Charter", Georgia, serif; font-size: 10.3pt; line-height: 1.36; color: #1a1a1a; }
+a { color: #14387f; text-decoration: none; }
+.toolbar { position: sticky; top: 0; z-index: 2; display: flex; gap: 18px; justify-content: center; padding: 10px; background: #111; font: 13px/1.4 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+.toolbar a, .toolbar button { color: #eee; background: none; border: 0; cursor: pointer; font: inherit; padding: 0; }
+.toolbar a:hover, .toolbar button:hover { color: #6ee7a0; }
+.cv { max-width: 21cm; margin: 24px auto 48px; padding: 1.4cm 1.6cm; background: #fff; box-shadow: 0 2px 24px rgba(0, 0, 0, .12); }
+h1 { font-size: 27pt; font-weight: 700; margin: 0 0 2px; line-height: 1.04; letter-spacing: -.4px; }
+h2 { font-size: 12.5pt; font-weight: 700; letter-spacing: .2px; margin: 11px 0 5px; padding-bottom: 2px; border-bottom: 1.3px solid #2a2a2a; break-after: avoid; }
+.cv-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5em; }
+.cv-title { font-size: 11pt; margin-top: 4px; }
+.cv-aff { font-size: 10.4pt; color: #333; }
+.cv-contact table { border-collapse: collapse; font-size: 9.2pt; margin-left: auto; }
+.cv-contact td { padding: 1px 0 1px 8px; vertical-align: top; white-space: nowrap; }
+.cv-contact td.k { text-align: right; font-weight: 700; padding-left: 0; color: #333; }
+.cv-rule { height: 1.4px; background: #2a2a2a; border: 0; margin: 10px 0 2px; }
+.jb { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; margin-top: 5px; break-inside: avoid; }
+.jb .r { white-space: nowrap; color: #333; font-variant-numeric: tabular-nums; }
+.jb + .jb { margin-top: 1px; }
+ul, ol { margin: 3px 0 5px; padding-left: 1.3em; }
+ul li { margin: 1px 0; break-inside: avoid; }
+ol > li { margin: 2.5px 0; padding-left: 2px; break-inside: avoid; }
+p { margin: 3px 0; }
+sup { font-size: .7em; line-height: 0; vertical-align: super; }
+.legend, .metrics { font-size: 9pt; color: #444; margin: 2px 0 3px; }
+.metrics { margin-bottom: 6px; }
+.skills p { margin: 7px 0 1px; break-after: avoid; }
+.updated { margin-top: 14px; font-size: 8.5pt; color: #777; text-align: right; }
+@media screen and (max-width: 720px) {
+  .cv { margin: 0; padding: 22px 18px; box-shadow: none; }
+  .cv-header { flex-direction: column; }
+  .cv-contact table { margin-left: 0; }
+  .jb { flex-direction: column; gap: 0; }
+}
+@media print {
+  html { background: #fff; }
+  .toolbar { display: none; }
+  .cv { margin: 0; padding: 0; max-width: none; box-shadow: none; }
+  a { color: #1a1a1a; }
+}

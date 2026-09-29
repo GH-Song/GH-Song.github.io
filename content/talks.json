@@ -1,0 +1,56 @@
+[
+  {
+    "date": "2025-08",
+    "title": "Spectrometer using stacked disordered metasurfaces",
+    "authors": ["G. Song", "D. Lee", "M. Jang"],
+    "venue": {
+      "en": "Computational Optical Sensing and Imaging (COSI), Optica Imaging Congress · paper CTh1B.1",
+      "ko": "Computational Optical Sensing and Imaging (COSI), Optica Imaging Congress · 논문 CTh1B.1"
+    },
+    "place": "Seattle, WA, USA",
+    "kind": {"en": "Oral", "ko": "구두"},
+    "award": {"en": "Student Paper Prize", "ko": "학생 논문상"},
+    "scope": "international"
+  },
+  {
+    "date": "2024-08",
+    "title": "Deep-tissue optical focusing with phase conjugation based on nonlinear acousto-optic modulation",
+    "authors": ["J. Oh", "H. Ko", "G. Song", "S. Lee", "M. Jang"],
+    "venue": {"en": "CLEO/Pacific Rim · paper Th1G_2", "ko": "CLEO/Pacific Rim · 논문 Th1G_2"},
+    "place": "Incheon, Korea",
+    "scope": "international"
+  },
+  {
+    "date": "2023-11",
+    "title": "Double-layered disordered metasurface spectrometer",
+    "authors": ["G. Song", "D. Lee", "C. Lee", "C. Lee", "M. Jang"],
+    "venue": {
+      "en": "Korea International Semiconductor Conference on Manufacturing Technology (KISM 2023)",
+      "ko": "한국반도체제조기술학술대회 (KISM 2023)"
+    },
+    "place": "Busan, Korea",
+    "kind": {"en": "Poster", "ko": "포스터"},
+    "scope": "international"
+  },
+  {
+    "date": "2021-07",
+    "title": "Resolution enhancement in ultrasound-modulated optical tomography by detecting high-order diffracted light waves",
+    "authors": ["G. Song", "M. Jang"],
+    "venue": {"en": "Optics and Photonics Congress (OPC 2021)", "ko": "Optics and Photonics Congress (OPC 2021)"},
+    "place": "Busan, Korea",
+    "kind": {"en": "Oral", "ko": "구두"},
+    "scope": "international"
+  },
+  {
+    "date": "2021-02",
+    "title": "Second-harmonic detection of ultrasound-modulated light",
+    "authors": ["G. Song", "D. Lee", "M. Jang"],
+    "venue": {
+      "en": "32nd Annual Meeting of the Optical Society of Korea (OSK 2021 Winter)",
+      "ko": "제32회 한국광학회 동계학술발표회 (OSK 2021 Winter)"
+    },
+    "place": "Korea",
+    "kind": {"en": "Oral", "ko": "구두"},
+    "scope": "domestic"
+  }
+]
