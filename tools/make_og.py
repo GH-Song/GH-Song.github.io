@@ -23,10 +23,9 @@ def main():
     load = lambda n: json.loads((ROOT / "content" / f"{n}.json").read_text("utf-8"))
     site, pubs, honors = load("site"), load("publications"), load("honors")
     journals = [p for p in pubs["papers"] if p.get("type", "journal") == "journal"]
-    first = sum("first" in p.get("tags", []) for p in journals)
-    granted = sum(f["status"] == "granted" for p in honors["patents"] for f in p["filings"])
-    stats = [(len(journals), "Journal articles"), (first, "First-author papers"),
-             (site["scholar"]["citations"], "Citations"), (granted, "Patents granted")]
+    filed = sum(len(p["filings"]) for p in honors["patents"])
+    stats = [(len(journals), "Journal articles"), (site["scholar"]["citations"], "Citations"),
+             (filed, "Patent applications"), (len(honors["awards"]), "Awards")]
     tmp = pathlib.Path(tempfile.mkdtemp())
     shutil.copy(IMG / "portrait.jpg", tmp / "portrait.jpg")
     cells = "".join(f"<div><b>{v}</b><span>{l}</span></div>" for v, l in stats)

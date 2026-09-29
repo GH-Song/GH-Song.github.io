@@ -173,10 +173,9 @@ UI = {
         "presentations": "Conference presentations", "press": "Press coverage",
         "projects": "Participation in sponsored research", "grants": "Grants", "education": "Education", "skills": "Skills",
         "projects_note": "Projects of Prof. Mooseok Jang (PI), in which I participated as a researcher.",
-        "metrics": [("Journal articles", "articles"), ("First-author articles", "first"), ("Citations", "cites"),
-                    ("h-index", "h"), ("i10-index", "i10"), ("Patents granted", "patents"), ("Awards", "awards"),
-                    ("Conference presentations", "talks")],
-        "metrics_note": "Citation metrics from Google Scholar, {d}.",
+        "metrics": [("Journal articles", "articles"), ("Citations", "cites"), ("Patent applications", "patents"),
+                    ("Awards", "awards"), ("Conference presentations", "talks")],
+        "metrics_note": "Citations from Google Scholar, {d}.",
         "advisor": "Advisor: Prof. Mooseok Jang",
         "groups": {"first": "First-author papers", "other": "Awards and other", "coauthor": "Co-authored papers"},
         "ch_cites": "Citations per year",
@@ -207,10 +206,9 @@ UI = {
         "presentations": "학회 발표", "press": "언론 보도",
         "projects": "참여 연구과제", "grants": "연구비 수혜", "education": "학력", "skills": "기술",
         "projects_note": "지도교수 장무석 교수(연구책임자)의 과제에 참여연구원으로 참여했습니다.",
-        "metrics": [("국제 학술지 논문", "articles"), ("제1저자 논문", "first"), ("피인용", "cites"),
-                    ("h-index", "h"), ("i10-index", "i10"), ("등록 특허", "patents"), ("수상", "awards"),
-                    ("학회 발표", "talks")],
-        "metrics_note": "인용 지표: Google Scholar, {d} 기준.",
+        "metrics": [("국제 학술지 논문", "articles"), ("피인용", "cites"), ("특허 출원", "patents"),
+                    ("수상", "awards"), ("학회 발표", "talks")],
+        "metrics_note": "피인용: Google Scholar, {d} 기준.",
         "advisor": "지도교수: 장무석",
         "groups": {"first": "제1저자 논문", "other": "수상·기타", "coauthor": "공저 논문"},
         "ch_cites": "연도별 피인용",
@@ -454,9 +452,9 @@ def sec_overview(lang):
     journals = journal_papers()
     first = [p for p in journals if "first" in p.get("tags", [])]
     sch = SITE["scholar"]
-    values = {"articles": len(journals), "first": len(first), "cites": f"{sch['citations']:,}", "h": sch["h_index"],
-              "i10": sch["i10_index"], "patents": len(filings("granted")), "awards": len(HONORS["awards"]),
-              "talks": len(TALKS)}
+    values = {"articles": len(journals), "cites": f"{sch['citations']:,}",
+              "patents": sum(len(p["filings"]) for p in HONORS["patents"]),      # every national filing, granted or pending
+              "awards": len(HONORS["awards"]), "talks": len(TALKS)}
     rows = "".join(f'<tr><th scope="row">{esc(label)}</th><td>{values[k]}</td></tr>' for label, k in u["metrics"])
     ys = [p["year"] for p in journals]
     per_year = {y: [sum(1 for p in first if p["year"] == y), sum(1 for p in journals if p["year"] == y and p not in first)]
