@@ -313,6 +313,7 @@ def page(lang, body, title, desc, path, alt_paths=None, active=None):
 </div></footer>
 <div class="toast" role="status" aria-live="polite" data-toast data-copied="{esc(u['copied'])}"></div>
 <script src="{asset('/static/js/site.js')}" defer></script>
+{analytics()}
 </body>
 </html>
 """
@@ -326,6 +327,14 @@ def verification():
     if v.get("naver"):
         tags.append(f'<meta name="naver-site-verification" content="{esc(v["naver"])}">')
     return "\n".join(tags)
+
+
+def analytics():
+    token = SITE.get("analytics", {}).get("cloudflare")
+    if not token:
+        return ""
+    beacon = json.dumps({"token": token})
+    return f"<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{beacon}'></script>"
 
 
 def person_ld():
@@ -796,7 +805,9 @@ def build_cv(lang="en"):
 <h2>Research Experience</h2><div class="legend">Sponsored projects of Prof. Mooseok Jang (PI); participating researcher.</div>{exp}
 <h2>Technical Skills</h2><div class="skills">{skills}</div>
 <p class="updated">Last updated {esc(fmt_date(s['updated'], L, day=True))}</p>
-</article></body></html>"""
+</article>
+{analytics()}
+</body></html>"""
 
 
 def build_404():

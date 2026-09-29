@@ -30,6 +30,7 @@
   },
   "lab": {"name": "Mooo Lab", "url": "http://mooolab.kaist.ac.kr/"},
   "verification": {"google": "", "naver": ""},
+  "analytics": {"cloudflare": "0bba2955ab144fd18449ead812377b3b"},
   "portrait_alt": {"en": "Photo of Gookho Song", "ko": "송국호 사진"},
   "interests": [
     {"en": "Metasurfaces", "ko": "메타표면"},
