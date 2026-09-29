@@ -168,7 +168,7 @@ UI = {
         "nav": [("publications", "Publications"), ("awards", "Awards"), ("patents", "Patents"),
                 ("presentations", "Presentations"), ("press", "Press")],
         "home": "Home", "research": "Research", "cv": "CV", "cv_pdf": "CV (PDF)",
-        "main_nav": "Pages", "section_nav": "Sections on this page", "print": "Print",
+        "main_nav": "Pages", "section_nav": "Sections", "print": "Print",
         "switch_label": "한국어", "switch_title": "한국어로 보기",
         "interests": "Research interests", "overview": "Overview", "news": "News",
         "publications": "Publications", "awards": "Honors & awards", "patents": "Patents",
@@ -202,7 +202,7 @@ UI = {
         "nav": [("publications", "논문"), ("awards", "수상"), ("patents", "특허"),
                 ("presentations", "학회 발표"), ("press", "언론 보도")],
         "home": "홈", "research": "연구 소개", "cv": "CV", "cv_pdf": "CV (PDF)",
-        "main_nav": "페이지", "section_nav": "이 페이지의 항목", "print": "인쇄",
+        "main_nav": "페이지", "section_nav": "항목", "print": "인쇄",
         "switch_label": "EN", "switch_title": "View in English",
         "interests": "연구 분야", "overview": "요약", "news": "소식",
         "publications": "논문", "awards": "수상", "patents": "특허",
@@ -236,9 +236,9 @@ UI = {
 
 # ────────────────────────────────────────────────────────── page chrome ──
 
-def header(lang, active=None, alt_paths=None, sections=False):
-    """Site header. Tabs are pages only (Home, Research, CV); on the home page a
-    second row links to its sections."""
+def header(lang, active=None, alt_paths=None):
+    """Site header, the same on every page: page tabs (Home, Research, CV) and a
+    second row linking to the home-page sections."""
     u = UI[lang]
     tabs = ""
     for key, href in (("home", HOME[lang]), ("research", RESEARCH_PAGE[lang]), ("cv", CV_PAGE[lang])):
@@ -249,20 +249,21 @@ def header(lang, active=None, alt_paths=None, sections=False):
         other = "ko" if lang == "en" else "en"
         switch = (f'<a class="lang" href="{alt_paths[other]}" hreflang="{other}" lang="{other}" '
                   f'title="{esc(u["switch_title"])}">{esc(u["switch_label"])}</a>')
-    sub = ""
-    if sections:
-        links = "".join(f'<a href="#{k}" data-spy="{k}">{esc(v)}</a>' for k, v in u["nav"])
-        sub = f'\n  <div class="subnav"><nav class="wrap subnav-in" aria-label="{esc(u["section_nav"])}">{links}</nav></div>'
+    on_home = active == "home"            # elsewhere the section links lead back to the home page
+    base = "" if on_home else HOME[lang]
+    links = "".join(f'<a href="{base}#{k}"' + (f' data-spy="{k}"' if on_home else "") + f'>{esc(v)}</a>'
+                    for k, v in u["nav"])
     return f"""<header class="top" data-top>
   <div class="wrap top-in">
     <a class="brand" href="{HOME[lang]}">{esc(T(SITE['name'], lang))}</a>
     <nav class="tabs" aria-label="{esc(u['main_nav'])}">{tabs}</nav>
     {switch}
-  </div>{sub}
+  </div>
+  <div class="subnav"><nav class="wrap subnav-in" aria-label="{esc(u["section_nav"])}">{links}</nav></div>
 </header>"""
 
 
-def page(lang, body, title, desc, path, alt_paths=None, active=None, sections=False):
+def page(lang, body, title, desc, path, alt_paths=None, active=None):
     """alt_paths: {'en': '/…', 'ko': '/ko/…'} for hreflang and the language switch."""
     u = UI[lang]
     url = SITE["url"] + path
@@ -302,7 +303,7 @@ def page(lang, body, title, desc, path, alt_paths=None, active=None, sections=Fa
 </head>
 <body>
 <a class="skip" href="#main">{esc(u['skip'])}</a>
-{header(lang, active, alt_paths, sections)}
+{header(lang, active, alt_paths)}
 <main id="main" class="wrap">
 {body}
 </main>
@@ -529,9 +530,10 @@ def sec_publications(lang):
     u = UI[lang]
     journals = sorted(journal_papers(), key=lambda p: p["date"], reverse=True)
     preprints = sorted((p for p in PUBS if p.get("type") == "preprint"), key=lambda p: p["date"], reverse=True)
-    n_first = sum(1 for p in journals if "first" in p.get("tags", []))
+    listed = journals + preprints          # the chips count what each filter shows, preprints included
+    n_first = sum(1 for p in listed if "first" in p.get("tags", []))
     chips = (f'<div class="filters" role="group">'
-             f'<button type="button" data-filter="all" aria-pressed="true">{esc(u["filter_all"])} <span>{len(journals)}</span></button>'
+             f'<button type="button" data-filter="all" aria-pressed="true">{esc(u["filter_all"])} <span>{len(listed)}</span></button>'
              f'<button type="button" data-filter="first" aria-pressed="false">{esc(u["filter_first"])} <span>{n_first}</span></button></div>')
     groups = "".join(
         f'<div class="year-group"><h3 class="year">{y}</h3><ol class="pubs">'
@@ -632,7 +634,7 @@ def sec_projects(lang):
     rows = ""
     for e in sorted(CV["experience"], key=lambda e: (e["start"], e["end"]), reverse=True):
         pts = "".join(f"<li>{md(T(x, lang))}</li>" for x in e["points"])
-        rows += (f'<li><time>{e["start"]}–{e["end"]}</time><div><p class="r-title">{md(T(e["title"], lang))}</p>'
+        rows += (f'<li><span class="when">{e["start"]}–{e["end"]}</span><div><p class="r-title">{md(T(e["title"], lang))}</p>'
                  f'<p class="r-meta">{esc(T(e["org"], lang))}</p><ul class="plain">{pts}</ul></div></li>')
     grants = "".join(f'<li><time>{g["year"]}</time><div><p class="r-title">{md(T(g["title"], lang))}</p>'
                      f'<p class="r-meta">{esc(T(g["org"], lang))}</p><p class="r-note">{md(T(g["body"], lang))}</p></div></li>'
@@ -643,7 +645,7 @@ def sec_projects(lang):
 
 def sec_education(lang):
     rows = "".join(
-        f'<li><time>{esc(T(e["years"], lang))}</time><div><p class="r-title">{md(T(e["degree"], lang))}</p>'
+        f'<li><span class="when">{esc(T(e["years"], lang))}</span><div><p class="r-title">{md(T(e["degree"], lang))}</p>'
         f'<p class="r-meta">{esc(T(e["school"], lang))}</p>'
         + (f'<p class="r-note">{md(T(e["note"], lang))}</p>' if e.get("note") else "") + "</div></li>"
         for e in CV["education"])
@@ -667,7 +669,7 @@ def build_home(lang):
         sec_press(lang), sec_projects(lang), sec_education(lang), sec_skills(lang),
     ])
     return page(lang, body, T(SITE["title"], lang), T(SITE["description"], lang), HOME[lang], alt_paths=HOME,
-                active="home", sections=True)
+                active="home")
 
 
 def build_research(lang):
@@ -762,8 +764,8 @@ def build_cv(lang="en"):
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gookho Song — Curriculum Vitae</title>
 <meta name="description" content="Curriculum vitae of Gookho Song (송국호), Ph.D. candidate at KAIST.">
-<link rel="canonical" href="{s['url']}/cv/">
-<link rel="alternate" hreflang="en" href="{s['url']}/cv/"><link rel="alternate" hreflang="ko" href="{s['url']}/ko/cv/">
+<link rel="canonical" href="{s['url']}{CV_PAGE[lang]}">
+<link rel="alternate" hreflang="en" href="{s['url']}/cv/"><link rel="alternate" hreflang="ko" href="{s['url']}/ko/cv/"><link rel="alternate" hreflang="x-default" href="{s['url']}/cv/">
 <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -883,7 +885,7 @@ def build():
     write(OUT / "404.html", build_404())
     write(OUT / ".nojekyll", "")
     write(OUT / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE['url']}/sitemap.xml\n")
-    pages = ["/", "/ko/", "/research/", "/ko/research/", "/cv/"]
+    pages = [p for paths in (HOME, RESEARCH_PAGE, CV_PAGE) for p in paths.values()]
     urls = "".join(f"<url><loc>{SITE['url']}{p}</loc><lastmod>{SITE['updated']}</lastmod></url>" for p in pages)
     write(OUT / "sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n'
                                f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')

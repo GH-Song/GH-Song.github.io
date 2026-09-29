@@ -5,18 +5,45 @@
 html { background: #eceae4; }
 body { margin: 0; font-family: "Charis SIL", Charter, "Bitstream Charter", Georgia, serif; font-size: 10.3pt; line-height: 1.36; color: #1a1a1a; }
 a { color: #14387f; text-decoration: none; }
-/* site header — same look as static/css/site.css */
+/* site header — a copy of the header rules in static/css/site.css (same breakpoints); change both together */
 .top { position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, .96); border-bottom: 1px solid #eaecef;
-       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.6; }
+       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.6;
+       letter-spacing: -0.003em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 .wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 28px; }
 .top-in { height: 56px; display: flex; align-items: center; gap: 20px; }
 .top a { color: inherit; }
 .brand { font-weight: 600; font-size: 15px; color: #111418 !important; white-space: nowrap; }
 .tabs { display: flex; gap: 2px; margin-left: auto; }
-.tabs a { font-size: 14px; color: #7b818a !important; padding: 6px 10px; border-radius: 4px; white-space: nowrap; }
+.tabs a { font-size: 14px; color: #7b818a !important; padding: 6px 10px; border-radius: 4px; white-space: nowrap; transition: color .15s, background .15s; }
 .tabs a:hover { color: #111418 !important; background: #f7f8f9; }
 .tabs a.on { color: #111418 !important; font-weight: 600; }
+.subnav { border-top: 1px solid #eaecef; }
+.subnav-in { height: 38px; display: flex; align-items: center; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+.subnav-in::-webkit-scrollbar { display: none; }
+.subnav a { font-size: 13px; color: #7b818a !important; white-space: nowrap; transition: color .15s; }
+.subnav a:hover { color: #111418 !important; }
 .lang { font-size: 13px; color: #464c55 !important; padding: 3px 9px; border: 1px solid #d8dbe0; border-radius: 4px; white-space: nowrap; }
+.lang:hover { border-color: #7b818a; color: #111418 !important; }
+@media screen and (max-width: 860px) {
+  .wrap { padding: 0 20px; }
+  .top-in { gap: 12px; }
+  .subnav-in { gap: 18px; }
+}
+@media screen and (max-width: 560px) {
+  .top-in { height: 50px; gap: 8px; }
+  .brand { font-size: 14px; }
+  .tabs a { padding: 6px 7px; font-size: 13.5px; }
+  .lang { font-size: 12.5px; padding: 2px 7px; }
+  .subnav-in { height: 34px; gap: 16px; }
+}
+@media screen and (max-width: 380px) {
+  .wrap { padding: 0 16px; }
+  .top-in { gap: 6px; }
+  .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .tabs a { padding: 6px 4px; }
+  .subnav-in { gap: 13px; }
+}
+/* CV */
 .cv-actions { max-width: 21cm; margin: 18px auto 0; display: flex; justify-content: flex-end; gap: 16px;
               font: 13px/1.4 "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif; }
 .cv-actions a, .cv-actions button { color: #1f4f99; background: none; border: 0; padding: 0; cursor: pointer; font: inherit; }
@@ -44,10 +71,6 @@ sup { font-size: .7em; line-height: 0; vertical-align: super; }
 .skills p { margin: 7px 0 1px; break-after: avoid; }
 .updated { margin-top: 14px; font-size: 8.5pt; color: #777; text-align: right; }
 @media screen and (max-width: 720px) {
-  .wrap { padding: 0 20px; }
-  .top-in { height: 50px; gap: 8px; }
-  .brand { font-size: 14px; }
-  .tabs a { padding: 6px 7px; font-size: 13.5px; }
   .cv-actions { padding: 0 18px; }
   .cv { margin: 10px 0 0; padding: 22px 18px; box-shadow: none; }
   .cv-header { flex-direction: column; }
