@@ -31,6 +31,7 @@ OUT = ROOT / "_site"
 LANGS = ("en", "ko")
 HOME = {"en": "/", "ko": "/ko/"}
 RESEARCH_PAGE = {"en": "/research/", "ko": "/ko/research/"}
+CV_PAGE = {"en": "/cv/", "ko": "/ko/cv/"}
 
 
 # ─────────────────────────────────────────────────────────────── helpers ──
@@ -166,7 +167,8 @@ UI = {
         "skip": "Skip to content",
         "nav": [("publications", "Publications"), ("awards", "Awards"), ("patents", "Patents"),
                 ("presentations", "Presentations"), ("press", "Press")],
-        "research": "Research", "cv": "CV", "cv_pdf": "CV (PDF)",
+        "home": "Home", "research": "Research", "cv": "CV", "cv_pdf": "CV (PDF)",
+        "main_nav": "Pages", "section_nav": "Sections on this page", "print": "Print",
         "switch_label": "한국어", "switch_title": "한국어로 보기",
         "interests": "Research interests", "overview": "Overview", "news": "News",
         "publications": "Publications", "awards": "Honors & awards", "patents": "Patents",
@@ -199,7 +201,8 @@ UI = {
         "skip": "본문 바로가기",
         "nav": [("publications", "논문"), ("awards", "수상"), ("patents", "특허"),
                 ("presentations", "학회 발표"), ("press", "언론 보도")],
-        "research": "연구 소개", "cv": "CV", "cv_pdf": "CV (PDF)",
+        "home": "홈", "research": "연구 소개", "cv": "CV", "cv_pdf": "CV (PDF)",
+        "main_nav": "페이지", "section_nav": "이 페이지의 항목", "print": "인쇄",
         "switch_label": "EN", "switch_title": "View in English",
         "interests": "연구 분야", "overview": "요약", "news": "소식",
         "publications": "논문", "awards": "수상", "patents": "특허",
@@ -233,20 +236,40 @@ UI = {
 
 # ────────────────────────────────────────────────────────── page chrome ──
 
-def page(lang, body, title, desc, path, alt_paths=None, is_home=True):
-    """alt_paths: {'en': '/…', 'ko': '/ko/…'} for hreflang and the language switch."""
+def header(lang, active=None, alt_paths=None, sections=False):
+    """Site header. Tabs are pages only (Home, Research, CV); on the home page a
+    second row links to its sections."""
     u = UI[lang]
-    url = SITE["url"] + path
-    alt = switch = ""
+    tabs = ""
+    for key, href in (("home", HOME[lang]), ("research", RESEARCH_PAGE[lang]), ("cv", CV_PAGE[lang])):
+        on = ' class="on" aria-current="page"' if key == active else ""
+        tabs += f'<a href="{href}"{on}>{esc(u[key])}</a>'
+    switch = ""
     if alt_paths:
-        alt = "".join(f'<link rel="alternate" hreflang="{l}" href="{SITE["url"]}{p}">' for l, p in alt_paths.items())
-        alt += f'<link rel="alternate" hreflang="x-default" href="{SITE["url"]}{alt_paths["en"]}">'
         other = "ko" if lang == "en" else "en"
         switch = (f'<a class="lang" href="{alt_paths[other]}" hreflang="{other}" lang="{other}" '
                   f'title="{esc(u["switch_title"])}">{esc(u["switch_label"])}</a>')
-    base = "" if is_home else HOME[lang]
-    nav = "".join(f'<a href="{base}#{k}" data-spy="{k}">{esc(v)}</a>' for k, v in u["nav"])
-    nav += f'<a href="{RESEARCH_PAGE[lang]}">{esc(u["research"])}</a><a href="/cv/">{esc(u["cv"])}</a>'
+    sub = ""
+    if sections:
+        links = "".join(f'<a href="#{k}" data-spy="{k}">{esc(v)}</a>' for k, v in u["nav"])
+        sub = f'\n  <div class="subnav"><nav class="wrap subnav-in" aria-label="{esc(u["section_nav"])}">{links}</nav></div>'
+    return f"""<header class="top" data-top>
+  <div class="wrap top-in">
+    <a class="brand" href="{HOME[lang]}">{esc(T(SITE['name'], lang))}</a>
+    <nav class="tabs" aria-label="{esc(u['main_nav'])}">{tabs}</nav>
+    {switch}
+  </div>{sub}
+</header>"""
+
+
+def page(lang, body, title, desc, path, alt_paths=None, active=None, sections=False):
+    """alt_paths: {'en': '/…', 'ko': '/ko/…'} for hreflang and the language switch."""
+    u = UI[lang]
+    url = SITE["url"] + path
+    alt = ""
+    if alt_paths:
+        alt = "".join(f'<link rel="alternate" hreflang="{l}" href="{SITE["url"]}{p}">' for l, p in alt_paths.items())
+        alt += f'<link rel="alternate" hreflang="x-default" href="{SITE["url"]}{alt_paths["en"]}">'
     ld = json.dumps(person_ld(), ensure_ascii=False, separators=(",", ":"))
     return f"""<!doctype html>
 <html lang="{lang}">
@@ -279,13 +302,7 @@ def page(lang, body, title, desc, path, alt_paths=None, is_home=True):
 </head>
 <body>
 <a class="skip" href="#main">{esc(u['skip'])}</a>
-<header class="top" data-top>
-  <div class="wrap top-in">
-    <a class="brand" href="{HOME[lang]}">{esc(T(SITE['name'], lang))}</a>
-    <nav class="nav" aria-label="Primary">{nav}</nav>
-    {switch}
-  </div>
-</header>
+{header(lang, active, alt_paths, sections)}
 <main id="main" class="wrap">
 {body}
 </main>
@@ -649,7 +666,8 @@ def build_home(lang):
         sec_publications(lang), sec_awards(lang), sec_patents(lang), sec_presentations(lang),
         sec_press(lang), sec_projects(lang), sec_education(lang), sec_skills(lang),
     ])
-    return page(lang, body, T(SITE["title"], lang), T(SITE["description"], lang), HOME[lang], alt_paths=HOME)
+    return page(lang, body, T(SITE["title"], lang), T(SITE["description"], lang), HOME[lang], alt_paths=HOME,
+                active="home", sections=True)
 
 
 def build_research(lang):
@@ -686,12 +704,13 @@ def build_research(lang):
     parts.append(section("other", u["other"], f'<ul class="rows rows-flat">{other}</ul>'))
     parts.append(f'<p class="back"><a href="{HOME[lang]}">{esc(u["back"])}</a></p>')
     return page(lang, "\n".join(parts), f'{u["research_title"]} · {T(SITE["name"], lang)}', T(SITE["description"], lang),
-                RESEARCH_PAGE[lang], alt_paths=RESEARCH_PAGE, is_home=False)
+                RESEARCH_PAGE[lang], alt_paths=RESEARCH_PAGE, active="research")
 
 
-def build_cv():
-    """Print-first CV page (English). Self-contained CSS so Chrome can print it from file://."""
+def build_cv(lang="en"):
+    """Print-first CV (English content; site header in `lang`). Self-contained CSS so Chrome can print it from file://."""
     L = "en"
+    u = UI[lang]
     s = SITE
     css = (STATIC / "css" / "cv.css").read_text("utf-8")
 
@@ -740,18 +759,22 @@ def build_cv():
     links = "".join(f"<tr><td class=k>{esc(short[l['id']][0])}</td><td>{link(l['url'], short[l['id']][1])}</td></tr>"
                     for l in s["links"] if l["id"] in short)
     return f"""<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gookho Song — Curriculum Vitae</title>
 <meta name="description" content="Curriculum vitae of Gookho Song (송국호), Ph.D. candidate at KAIST.">
 <link rel="canonical" href="{s['url']}/cv/">
+<link rel="alternate" hreflang="en" href="{s['url']}/cv/"><link rel="alternate" hreflang="ko" href="{s['url']}/ko/cv/">
 <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <style>{css}</style></head>
-<body><div class="toolbar"><a href="/">← gh-song.github.io</a><a href="/static/files/Gookho_Song_CV.pdf" download>Download PDF</a><button onclick="print()">Print</button></div>
-<article class="cv">
+<body>
+{header(lang, "cv", CV_PAGE)}
+<div class="cv-actions"><a href="/static/files/Gookho_Song_CV.pdf" download>{esc(u['cv_pdf'])}</a><button type="button" onclick="print()">{esc(u['print'])}</button></div>
+<article class="cv" lang="en">
 <div class="cv-header"><div class="cv-id"><h1>Gookho Song</h1>
-<div class="cv-title">{esc(T(s['role'], L))}</div><div class="cv-aff">Korea Advanced Institute of Science and Technology (KAIST)</div></div>
+<div class="cv-title">{esc(T(s.get('role_short') or s['role'], L))}</div><div class="cv-aff">Korea Advanced Institute of Science and Technology (KAIST)</div></div>
 <div class="cv-contact"><table><tr><td class=k>Email</td><td>{link('mailto:' + s['email'], s['email'])}</td></tr>
 <tr><td class=k>Web</td><td>{link(s['url'] + '/', s['url'].split('//')[1])}</td></tr>{links}</table></div></div>
 <hr class="cv-rule">
@@ -776,7 +799,7 @@ def build_cv():
 
 def build_404():
     body = '<div class="page-head"><h1>Page not found</h1><p class="note"><a href="/">Home</a> · <a href="/ko/">홈</a></p></div>'
-    return page("en", body, "Not found · Gookho Song", "Page not found", "/404.html", is_home=False)
+    return page("en", body, "Not found · Gookho Song", "Page not found", "/404.html")
 
 
 # ───────────────────────────────────────────────────────────── loading ──
@@ -855,7 +878,8 @@ def build():
     for lang in LANGS:
         write(OUT / HOME[lang].strip("/") / "index.html", build_home(lang))
         write(OUT / RESEARCH_PAGE[lang].strip("/") / "index.html", build_research(lang))
-    write(OUT / "cv" / "index.html", build_cv())
+    for lang in LANGS:
+        write(OUT / CV_PAGE[lang].strip("/") / "index.html", build_cv(lang))
     write(OUT / "404.html", build_404())
     write(OUT / ".nojekyll", "")
     write(OUT / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE['url']}/sitemap.xml\n")

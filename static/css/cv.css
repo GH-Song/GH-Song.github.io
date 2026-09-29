@@ -1,14 +1,27 @@
 /* CV page — mirrors the original cv.less (Charter look, A4), print-first.
    Charis SIL is an open Charter derivative, so the PDF renders the same anywhere. */
-@page { size: A4; margin: 1.4cm 1.6cm; }
+@page { size: A4; margin: 1.2cm 1.6cm; }
 * { box-sizing: border-box; }
 html { background: #eceae4; }
 body { margin: 0; font-family: "Charis SIL", Charter, "Bitstream Charter", Georgia, serif; font-size: 10.3pt; line-height: 1.36; color: #1a1a1a; }
 a { color: #14387f; text-decoration: none; }
-.toolbar { position: sticky; top: 0; z-index: 2; display: flex; gap: 18px; justify-content: center; padding: 10px; background: #111; font: 13px/1.4 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
-.toolbar a, .toolbar button { color: #eee; background: none; border: 0; cursor: pointer; font: inherit; padding: 0; }
-.toolbar a:hover, .toolbar button:hover { color: #6ee7a0; }
-.cv { max-width: 21cm; margin: 24px auto 48px; padding: 1.4cm 1.6cm; background: #fff; box-shadow: 0 2px 24px rgba(0, 0, 0, .12); }
+/* site header — same look as static/css/site.css */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, .96); border-bottom: 1px solid #eaecef;
+       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.6; }
+.wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+.top-in { height: 56px; display: flex; align-items: center; gap: 20px; }
+.top a { color: inherit; }
+.brand { font-weight: 600; font-size: 15px; color: #111418 !important; white-space: nowrap; }
+.tabs { display: flex; gap: 2px; margin-left: auto; }
+.tabs a { font-size: 14px; color: #7b818a !important; padding: 6px 10px; border-radius: 4px; white-space: nowrap; }
+.tabs a:hover { color: #111418 !important; background: #f7f8f9; }
+.tabs a.on { color: #111418 !important; font-weight: 600; }
+.lang { font-size: 13px; color: #464c55 !important; padding: 3px 9px; border: 1px solid #d8dbe0; border-radius: 4px; white-space: nowrap; }
+.cv-actions { max-width: 21cm; margin: 18px auto 0; display: flex; justify-content: flex-end; gap: 16px;
+              font: 13px/1.4 "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif; }
+.cv-actions a, .cv-actions button { color: #1f4f99; background: none; border: 0; padding: 0; cursor: pointer; font: inherit; }
+.cv-actions a:hover, .cv-actions button:hover { text-decoration: underline; }
+.cv { max-width: 21cm; margin: 10px auto 48px; padding: 1.4cm 1.6cm; background: #fff; box-shadow: 0 2px 24px rgba(0, 0, 0, .12); }
 h1 { font-size: 27pt; font-weight: 700; margin: 0 0 2px; line-height: 1.04; letter-spacing: -.4px; }
 h2 { font-size: 12.5pt; font-weight: 700; letter-spacing: .2px; margin: 11px 0 5px; padding-bottom: 2px; border-bottom: 1.3px solid #2a2a2a; break-after: avoid; }
 .cv-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5em; }
@@ -31,14 +44,20 @@ sup { font-size: .7em; line-height: 0; vertical-align: super; }
 .skills p { margin: 7px 0 1px; break-after: avoid; }
 .updated { margin-top: 14px; font-size: 8.5pt; color: #777; text-align: right; }
 @media screen and (max-width: 720px) {
-  .cv { margin: 0; padding: 22px 18px; box-shadow: none; }
+  .wrap { padding: 0 20px; }
+  .top-in { height: 50px; gap: 8px; }
+  .brand { font-size: 14px; }
+  .tabs a { padding: 6px 7px; font-size: 13.5px; }
+  .cv-actions { padding: 0 18px; }
+  .cv { margin: 10px 0 0; padding: 22px 18px; box-shadow: none; }
   .cv-header { flex-direction: column; }
   .cv-contact table { margin-left: 0; }
   .jb { flex-direction: column; gap: 0; }
 }
 @media print {
   html { background: #fff; }
-  .toolbar { display: none; }
+  body { font-size: 10pt; line-height: 1.33; }
+  .top, .cv-actions { display: none; }
   .cv { margin: 0; padding: 0; max-width: none; box-shadow: none; }
   a { color: #1a1a1a; }
 }

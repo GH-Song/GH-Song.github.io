@@ -40,5 +40,6 @@
     {"en": "Wavefront shaping", "ko": "파면 제어"},
     {"en": "Fourier ptychography", "ko": "푸리에 타이코그래피"},
     {"en": "Physics-guided deep learning", "ko": "물리 기반 딥러닝"}
-  ]
+  ],
+  "role_short": {"en": "Ph.D. Candidate, Bio and Brain Engineering", "ko": "바이오및뇌공학과 박사과정"}
 }

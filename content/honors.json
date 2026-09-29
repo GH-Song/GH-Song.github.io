@@ -47,7 +47,14 @@
           "date": "2026-03-10",
           "url": "https://patents.google.com/patent/US12571712B2/en"
         },
-        {"office": "KR", "number": "KR 10-3018644", "status": "granted", "date": "2026-09-08"}
+        {"office": "KR", "number": "KR 10-3018644", "status": "granted", "date": "2026-09-08"},
+        {
+          "office": "CN",
+          "number": "CN 118936636 A",
+          "status": "pending",
+          "date": "2024-11-12",
+          "url": "https://patents.google.com/patent/CN118936636A/en"
+        }
       ],
       "image": "/static/img/patent/us12571712.webp"
     },
@@ -63,6 +70,13 @@
           "status": "pending",
           "date": "2024-08-22",
           "url": "https://patents.google.com/patent/US20240280406A1/en"
+        },
+        {
+          "office": "CN",
+          "number": "CN 118518605 A",
+          "status": "pending",
+          "date": "2024-08-20",
+          "url": "https://patents.google.com/patent/CN118518605A/en"
         }
       ],
       "image": "/static/img/patent/us20240280406.webp"
