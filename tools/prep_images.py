@@ -169,8 +169,8 @@ save(fit(trim(Image.open(SRC_APR)), TW, TH), PUB / "apr2025.webp")
 print("patent drawings")
 PAT = OUT / "patent"
 PAT.mkdir(exist_ok=True)
-for key, name in (("us12571712", "US20240377304A1_D00000.png"),        # pre-grant publication of US 12,571,712 B2
-                  ("us20240280406", "US20240280406A1_D00000.png")):
+for key, name in (("us12571712", "2023_ultrasensitive-spectrometer/US_2024-0377304-A1_대표도.png"),        # pre-grant publication of US 12,571,712 B2
+                  ("us20240280406", "2023_hyperspectral-image-sensor/US_2024-0280406-A1_대표도.png")):
     save(fit(trim(Image.open(SRC_PAT / name), pad=12), 360, 360), PAT / f"{key}.webp")
 
 # ── research-page figures (original colours, white background) ───────────

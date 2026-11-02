@@ -36,8 +36,8 @@
   ],
   "patents": [
     {
-      "title": {"en": "Ultrasensitive spectrometer", "ko": "초민감 분광기 (Ultrasensitive spectrometer)"},
-      "inventors": ["M. Jang", "G. Song", "C. Lee", "D. G. Lee"],
+      "title": {"en": "Ultrasensitive spectrometer", "ko": "초민감 분광기"},
+      "inventors": ["M. Jang", "G. Song", "C. Lee", "D. Lee"],
       "assignee": "KAIST",
       "filings": [
         {
@@ -82,11 +82,25 @@
       "image": "/static/img/patent/us20240280406.webp"
     },
     {
-      "title": {"en": "Compact microscope based on a random-encoding metasurface", "ko": "무작위 부호화 메타표면 기반 소형 현미경"},
-      "inventors": ["G. Song", "M. Jang"],
+      "title": {"en": "Compact microscope based on random encoding metasurface", "ko": "랜덤 인코딩 메타표면 기반 초소형 현미경"},
+      "inventors": ["M. Jang", "G. Song"],
       "assignee": "KAIST",
       "filings": [
-        {"office": "KR", "number": "KR 10-2025-0132777", "status": "pending", "date": "2025"}
+        {"office": "KR", "number": "KR 10-2025-0132777", "status": "pending", "date": "2025-09-16"},
+        {"office": "CN", "number": "CN 202610108313.1", "status": "pending", "date": "2026-01-27"},
+        {"office": "US", "number": "US 19/465,524", "status": "pending", "date": "2026-01-30"}
+      ]
+    },
+    {
+      "title": {
+        "en": "Method and apparatus for video restoration beyond dynamic scattering media using video diffusion posterior sampling",
+        "ko": "비디오 디퓨전 사후 샘플링을 이용한 동적 산란 매질 너머의 비디오 복원 방법 및 장치"
+      },
+      "inventors": ["M. Jang", "J. C. Ye", "T. Kwon", "G. Song"],
+      "assignee": "KAIST",
+      "filings": [
+        {"office": "KR", "number": "KR 10-2026-0031241", "status": "pending", "date": "2026-02-19"},
+        {"office": "US", "number": "US 19/815,604", "status": "pending", "date": "2026-09-22"}
       ]
     }
   ],
